@@ -5,7 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>Edit Widget</title>
+    <title>New Website</title>
     <link rel="stylesheet"
           href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/style.css"/>
@@ -15,15 +15,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="widget-list.html" class="navbar-link">
+                <a href="website-list.html" class="navbar-link">
                     <span class="glyphicon glyphicon-menu-left"></span>
                 </a>
             </p>
             <a class="navbar-brand" href="#">
-                Widget Edit
+                New Website
             </a>
             <p class="navbar-text pull-right">
-                <a href="widget-list.html" class="navbar-link">
+                <a href="website-list.html" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -34,26 +34,14 @@
 <div class="container">
     <form>
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Senate Hearing">
+            <label for="name">Website Name</label>
+            <textarea rows="1" type="text" class="form-control" id="name" placeholder="Blogger"></textarea>
         </div>
         <div class="form-group">
-            <label for="text">Text</label>
-            <input type="text" class="form-control" id="text" placeholder="US Senate reaches agreement on new motion.">
-        </div>
-        <div class="form-group">
-            <label for="size">Size</label>
-            <select class="form-control" id="size">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+            <label for="description">Website Description</label>
+            <textarea rows="5" type="text" class="form-control" id="description" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."></textarea>
         </div>
     </form>
-    <a class="btn btn-danger btn-block"
-       href="widget-list.html">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -66,7 +54,7 @@
             <div class="col-xs-3 text-center">
             </div>
             <div class="col-xs-3 text-center">
-                <a href="../user/profile.html">
+                <a href="../user/profile.view.client.html">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
