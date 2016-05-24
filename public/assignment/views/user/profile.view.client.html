@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand">
                 Profile
             </a>
             <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-ok">
-          </span>
+                <a ng-click="model.updateUser()" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok">
+                    </span>
                 </a>
             </p>
         </div>
@@ -15,12 +15,12 @@
 </nav>
 
 <div class="container">
-    <div class="alert alert-success">
-        Successfully updated your profile
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
     </div>
 
-    <div class="alert alert-danger">
-        Unable to update your profile
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
     </div>
 
     <form>
