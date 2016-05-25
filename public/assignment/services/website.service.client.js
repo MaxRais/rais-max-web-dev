@@ -18,7 +18,8 @@
         ];
 
         var api = {
-            findWebsitesForUser: findWebsitesForUser
+            findWebsitesForUser: findWebsitesForUser,
+            findWebsiteById: findWebsiteById
         };
         return api;
         
@@ -30,6 +31,15 @@
                 }
             }
             return result;
+        }
+
+        function findWebsiteById(wid) {
+            for(var i in websites) {
+                if(websites[i]._id === wid) {
+                    return websites[i];
+                }
+            }
+            return null;
         }
     }
 
