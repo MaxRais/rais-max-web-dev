@@ -16,28 +16,11 @@
 
 <div class="container">
     <ul class="list-group">
-        <li class="list-group-item">
-            <a href="../page/page-list.html">Blogger</a>
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="../page/page-list.html">{{website.name}}</a>
             <a href="website-edit.html" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">Address Book</a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">Tester</a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">Blogger</a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
             </a>
         </li>
     </ul>

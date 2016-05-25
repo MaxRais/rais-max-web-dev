@@ -23,7 +23,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/website", {
-                templateUrl: "views/website/website-list.view.client.html"
+                templateUrl: "views/website/website-list.view.client.html",
+                controller: "WebsiteListController",
+                controllerAs: "model"
             });
     }
 })();
