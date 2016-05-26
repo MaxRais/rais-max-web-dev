@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController);
     
-    function WidgetListController($scope) {
+    function WidgetListController($sce) {
         var vm = this;
 
         vm.widgets = [
@@ -21,5 +21,24 @@
                 "url": "https://youtu.be/AM2Ivdi9c4E" },
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
+
+        vm.getTrustedHtml = getTrustedHtml;
+        vm.getTrustedUrl = getTrustedUrl;
+
+        function getTrustedHtml(widget) {
+            var html = $sce.trustAsHtml(widget.text);
+            return html;
+        }
+
+        function getTrustedUrl(widget) {
+            var urlParts = widget.url.split("/");
+            var id = urlParts[urlParts.length-1];
+            if(id.indexOf("=") > -1) {
+                var idParts = id.split("=");
+                id = idParts[idParts.length-1];
+            }
+            var url = "https://www.youtube.com/embed/" + id;
+            return $sce.trustAsResourceUrl(url);
+        }
     }
 })();
