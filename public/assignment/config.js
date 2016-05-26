@@ -31,6 +31,15 @@
                 templateUrl: "views/website/website-edit.view.client.html",
                 controller: "WebsiteEditController",
                 controllerAs: "model"
+            })
+            //page routes
+            .when("/user/:uid/website/:wid/page/:pid/widget", {
+                templateUrl: "views/widget/widget-list.view.client.html",
+                controller: "WidgetListController",
+                controllerAs: "model"
+            })
+            .otherwise({
+                redirectTo: "/login"
             });
     }
 })();
