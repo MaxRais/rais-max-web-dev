@@ -11,6 +11,7 @@
         var vm = this;
         var uid = $routeParams.uid;
 
+        vm.uid = uid;
         vm.websites = WebsiteService.findWebsitesForUser(uid);
 
     }

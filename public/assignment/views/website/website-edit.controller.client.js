@@ -14,8 +14,36 @@
 
         init();
 
+        vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
+
         function init() {
-            vm.website = WebsiteService.findWebsiteById(wid);
+            var website = WebsiteService.findWebsiteById(wid);
+            if(website) {
+                vm.website = angular.copy(website);
+            }
+            vm.uid = uid;
+            vm.wid = wid;
+        }
+        
+        function updateWebsite() {
+            var result = WebsiteService.updateWebsite(vm.website._id, vm.website);
+            if(result) {
+                vm.success = "User successfully updated";
+            }
+            else {
+                vm.error = "Could not update user";
+            }
+        }
+
+        function deleteWebsite() {
+            var result = WebsiteService.deleteWebsite(vm.website._id);
+            if(result) {
+                vm.success = "User successfully updated";
+            }
+            else {
+                vm.error = "Could not update user";
+            }
         }
 
     }

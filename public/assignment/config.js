@@ -34,10 +34,18 @@
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/website/new", {
+                templateUrl: "views/website/website-new.view.client.html",
+                controller: "WebsiteNewController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/website/:wid", {
                 templateUrl: "views/website/website-edit.view.client.html",
                 controller: "WebsiteEditController",
                 controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page	", {
+                templateUrl: "views/page/page-list.view.client.html"
             })
             //page routes
             .when("/user/:uid/website/:wid/page/:pid/widget", {
@@ -49,9 +57,9 @@
                 templateUrl: "views/widget/widget-chooser.view.client.html",
                 controller: "WidgetChooserController",
                 controllerAs: "model"
-            })
-            .otherwise({
-                redirectTo: "/login"
             });
+            //.otherwise({
+            //    redirectTo: "/login"
+            //});
     }
 })();

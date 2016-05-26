@@ -22,7 +22,6 @@
             else {
                 vm.error = "Could not update user";
             }
-
         }
 
         function init() {
