@@ -5,22 +5,24 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WebsiteNewController", WebsiteNewController);
+        .controller("PageNewController", PageNewController);
 
-    function WebsiteNewController($routeParams, WebsiteService) {
+    function PageNewController($routeParams, PageService) {
 
         var uid = $routeParams.uid;
+        var wid = $routeParams.wid;
         var vm = this;
         vm.create = create;
         vm.uid = uid;
+        vm.wid = wid;
 
         function create (name, desc) {
-            var website = {
+            var page = {
                 "_id": 0,
                 "name": name,
-                "developerId": 0
+                "websiteId": 0
             };
-            WebsiteService.createWebsite(uid, website);
+            PageService.createPage(wid, page);
         }
     }
 })();
