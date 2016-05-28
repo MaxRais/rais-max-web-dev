@@ -16,8 +16,8 @@
 
         init();
 
-        vm.updatePage = updateWidget;
-        vm.deletePage = deleteWidget;
+        vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
 
         function init() {
             var widget = WidgetService.findWidgetById(wgid);
@@ -31,6 +31,7 @@
         }
 
         function updateWidget() {
+            console.log('hey');
             var result = WidgetService.updateWidget(vm.widget._id, vm.widget);
             if(result) {
                 vm.success = "User successfully updated";

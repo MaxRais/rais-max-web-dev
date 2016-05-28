@@ -25,7 +25,6 @@
 
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
-        vm.createWidget = createWidget;
 
 
         function getTrustedHtml(widget) {

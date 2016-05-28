@@ -61,9 +61,11 @@
             for(var i in widgets) {
                 if(widgets[i]._id === id) {
                     widgets[i] = newWidget;
+                    console.log(widgets);
                     return true;
                 }
             }
+            console.log('no');
             return false;
         }
 
