@@ -25,10 +25,13 @@
         }
 
         function init() {
-            var user = UserService.findUserById(id);
-            if(user) {
-                vm.user = angular.copy(user);
-            }
+            var user = UserService
+                .findUserById(id)
+                .then(function (response) {
+                    if(user) {
+                        vm.user = angular.copy(user);
+                    }
+                });
         }
     }
     
