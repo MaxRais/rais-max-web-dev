@@ -44,23 +44,13 @@
         }
 
         function updateUser(id, newUser) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    users[i] = newUser;
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/"+id;
+            return $http.put(url, newUser);
         }
 
         function deleteUser(id) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    users.splice(i);
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/"+id;
+            return $http.delete(url);
         }
     }
 })();

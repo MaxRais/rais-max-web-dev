@@ -12,6 +12,8 @@ module.exports = function (app) {
 
     app.get("/api/user", getUsers);
     app.get("/api/user/:uid", findUserById);
+    app.put("/api/user/:uid", updateUser);
+    app.delete("/api/user/:uid", deleteUser);
     
     function getUsers(req, res) {
         var username = req.query["username"];
@@ -32,23 +34,54 @@ module.exports = function (app) {
         for(var i in users) {
             if(users[i]._id === userId) {
                 res.send(users[i]);
+                return;
             }
         }
+        res.send({});
     }
 
     function findUserByCredentials(username, password, res) {
         for(var i in users) {
             if(users[i].username === username && users[i].password === password) {
                 res.send(users[i]);
+                return;
             }
         }
+        res.send({});
     }
 
     function findUserByUsername(username, res) {
         for(var i in users) {
             if(users[i].username === username) {
                 res.send(users[i]);
+                return;
             }
         }
+        res.send({});
+    }
+
+    function updateUser(req, res) {
+        var id = req.params["uid"];
+        var newUser = req.body;
+        for(var i in users) {
+            if(users[i]._id === id) {
+                users[i] = newUser;
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.status(400).send("User not found");
+    }
+
+    function deleteUser(req, res) {
+        var id = req.params["uid"];
+        for(var i in users) {
+            if(users[i]._id === id) {
+                users.splice(i, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.status(404).send("User not found");
     }
 };

@@ -7,30 +7,45 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($location, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
-        var id = $routeParams["id"];
+        vm.deleteUser = deleteUser;
+        var id = $routeParams["uid"];
 
         init();
 
         function updateUser() {
-            var result = UserService.updateUser(vm.user._id, vm.user);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            UserService
+                .updateUser(id, vm.user)
+                .then(
+                    function (response) {
+                        vm.success = "User successfully updated";
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
+        }
+
+        function deleteUser () {
+            UserService
+                .deleteUser(id)
+                .then(
+                    function (success) {
+                        $location.url("/login");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function init() {
-            var user = UserService
+            UserService
                 .findUserById(id)
-                .then(function (response) {
-                    if(user) {
-                        vm.user = angular.copy(user);
-                    }
+                .then(function(response) {
+                    vm.user = response.data;
                 });
         }
     }
