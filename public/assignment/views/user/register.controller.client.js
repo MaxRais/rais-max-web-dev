@@ -15,14 +15,21 @@
         function register (username, password, confirm) {
             if(password === confirm) {
                 var user = {
-                    _id: "0",
                     username: username,
                     password: password,
-                    firstName: username,
-                    lastName: username
                 };
-                UserService.createUser(user);
-                $location.url("/user/"+user._id);
+
+                UserService
+                    .createUser(user)
+                    .then(
+                        function(response) {
+                            var newUser = response.data;
+                            $location.url("/user/"+newUser._id);
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    );
             }
         }
     }

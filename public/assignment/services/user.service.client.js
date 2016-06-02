@@ -19,9 +19,8 @@
         return api;
 
         function createUser(user) {
-            user._id = numUsers.toString();
-            users.push(user);
-            numUsers++;
+            var url = "/api/user";
+            return $http.post(url, user);
         }
 
         function findUserByCredentials(username, password) {
@@ -35,12 +34,8 @@
         }
         
         function findUserByUsername(username) {
-            for(var i in users) {
-                if(users[i].username === username) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "/api/user/"+id;
+            return $http.get(url);
         }
 
         function updateUser(id, newUser) {

@@ -15,15 +15,19 @@
         function login (username, password) {
             var user = UserService
                 .findUserByCredentials(username, password)
-                .then(function (response) {
-                    var user = response.data;
-                    if (user) {
-                        var id = user._id;
-                        $location.url("/user/" + id);
-                    } else {
-                        vm.error = "User not found";
-                    }
-                });
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        if (user) {
+                            var id = user._id;
+                            $location.url("/user/" + id);
+                        } else {
+                            vm.error = "User not found";
+                        }
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
         }
     }
 })();

@@ -10,6 +10,7 @@ module.exports = function (app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
 
+    app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
     app.get("/api/user/:uid", findUserById);
     app.put("/api/user/:uid", updateUser);
@@ -47,7 +48,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.send({});
+        res.status(403).send("User not found");
     }
 
     function findUserByUsername(username, res) {
@@ -83,5 +84,20 @@ module.exports = function (app) {
             }
         }
         res.status(404).send("User not found");
+    }
+
+    function createUser(req, res) {
+        var user = req.body;
+
+        for(var i in users) {
+            if(users[i].username === user.username) {
+                res.status(400).send("Username already in use");
+                return;
+            }
+        }
+
+        user._id = (new Date().getTime()) + "";
+        users.push(user);
+        res.json(user);
     }
 };
