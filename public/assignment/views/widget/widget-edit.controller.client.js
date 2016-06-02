@@ -20,10 +20,13 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            var widget = WidgetService.findWidgetById(wgid);
-            if(widget) {
-                vm.widget = angular.copy(widget);
-            }
+            WidgetService.findWidgetById(wgid)
+                .then(function(response) {
+                    var widget = response.data;
+                    if(widget) {
+                        vm.widget = angular.copy(widget);
+                    }
+                });
             vm.uid = uid;
             vm.wid = wid;
             vm.pid = pid;
@@ -31,7 +34,6 @@
         }
 
         function updateWidget() {
-            console.log('hey');
             var result = WidgetService.updateWidget(vm.widget._id, vm.widget);
             if(result) {
                 vm.success = "User successfully updated";
