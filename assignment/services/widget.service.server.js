@@ -33,6 +33,11 @@ module.exports = function (app, model) {
         var pid           = req.body.pid;
         var myFile        = req.file;
 
+        if(myFile == null) {
+            res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
+            return;
+        }
+
         var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
         var path          = myFile.path;         // full path of uploaded file
