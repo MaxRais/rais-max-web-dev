@@ -46,6 +46,7 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        //$(".widget-container").sortable();
+        $(".widget-container")
+            .sortable({axis: "y"});
     }
 })();

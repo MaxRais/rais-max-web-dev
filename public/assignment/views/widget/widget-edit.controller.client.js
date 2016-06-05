@@ -20,13 +20,16 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            WidgetService.findWidgetById(wgid)
-                .then(function(response) {
-                    var widget = response.data;
-                    if(widget) {
-                        vm.widget = angular.copy(widget);
+            WidgetService
+                .findWidgetById(wgid)
+                .then(
+                    function(response) {
+                        var widget = response.data;
+                        if(widget) {
+                            vm.widget = angular.copy(widget);
+                        }
                     }
-                });
+                );
             vm.uid = uid;
             vm.wid = wid;
             vm.pid = pid;

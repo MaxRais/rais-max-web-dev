@@ -26,6 +26,7 @@ module.exports = function (app, model) {
     app.delete("/api/widget/:wgid", deleteWidget);
 
     function uploadImage(req, res) {
+        console.log("here");
 
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
@@ -38,7 +39,14 @@ module.exports = function (app, model) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/:wgid");
+        for(var i in widgets) {
+            if(widgets[i]._id === widgetId) {
+                widgets[i].url = "/uploads/"+filename;
+                widgets[i].width = width;
+            }
+        }
+
+        res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/"+widgetId);
     }
 
     function createWidget(req, res) {
