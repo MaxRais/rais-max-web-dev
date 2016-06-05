@@ -20,6 +20,9 @@
 </nav>
 
 <div class="container">
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
     <ul class="list-group">
         <li ng-repeat="page in model.pages"
             class="list-group-item">

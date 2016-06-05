@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("PageEditController", PageEditController);
 
-    function PageEditController($routeParams, PageService) {
+    function PageEditController($routeParams, $location, PageService) {
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -19,33 +19,42 @@
         vm.deletePage = deletePage;
 
         function init() {
-            var page = PageService.findPageById(pid);
-            if(page) {
-                vm.page = angular.copy(page);
-            }
+            PageService
+                .findPageById(pid)
+                .then(
+                    function (response) {
+                        vm.page = response.data;
+                    }
+                );
             vm.uid = uid;
             vm.wid = wid;
             vm.pid = pid;
         }
 
         function updatePage() {
-            var result = PageService.updatePage(vm.page._id, vm.page);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            PageService
+                .updatePage(vm.page._id, vm.page)
+                .then(
+                function (response) {
+                    vm.success = "Page successfully updated";
+                },
+                function (error) {
+                    vm.error = error.data;
+                }
+            );
         }
 
         function deletePage() {
-            var result = PageService.deletePage(vm.page._id);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            PageService
+                .deletePage(vm.page._id)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+uid+"/website/"+wid+"/page");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
     }

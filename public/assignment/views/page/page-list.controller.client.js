@@ -14,6 +14,15 @@
 
         vm.uid = uid;
         vm.wid = wid;
-        vm.pages = PageService.findPagesByWebsiteId(wid);
+        PageService
+            .findPagesByWebsiteId(wid)
+            .then(
+                function (response) {
+                    vm.pages = response.data;
+                },
+                function (error) {
+                    vm.error = error.data;
+                }
+            );
     }
 })();
