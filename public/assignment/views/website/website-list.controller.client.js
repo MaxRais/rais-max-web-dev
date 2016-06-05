@@ -12,7 +12,15 @@
         var uid = $routeParams.uid;
 
         vm.uid = uid;
-        vm.websites = WebsiteService.findWebsitesForUser(uid);
-
+        WebsiteService
+            .findWebsitesForUser(uid)
+            .then(
+                function (response) {
+                    vm.websites = response.data;
+                },
+                function (error) {
+                    vm.error = error.data;
+                }
+            );
     }
 })();

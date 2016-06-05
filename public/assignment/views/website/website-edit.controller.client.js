@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("WebsiteEditController", WebsiteEditController);
 
-    function WebsiteEditController($routeParams, WebsiteService) {
+    function WebsiteEditController($routeParams, $location, WebsiteService) {
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -18,32 +18,42 @@
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
-            var website = WebsiteService.findWebsiteById(wid);
-            if(website) {
-                vm.website = angular.copy(website);
-            }
+            WebsiteService
+                .findWebsiteById(wid)
+                .then(
+                    function (response) {
+                        vm.website = response.data;
+                    }
+                );
+
             vm.uid = uid;
             vm.wid = wid;
         }
         
         function updateWebsite() {
-            var result = WebsiteService.updateWebsite(vm.website._id, vm.website);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            WebsiteService
+                .updateWebsite(vm.website._id, vm.website)
+                .then(
+                    function (response) {
+                        vm.success = "Website successfully updated";
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function deleteWebsite() {
-            var result = WebsiteService.deleteWebsite(vm.website._id);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            WebsiteService
+                .deleteWebsite(vm.website._id)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+uid+"/website");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
     }
