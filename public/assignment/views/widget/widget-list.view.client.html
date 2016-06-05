@@ -3,8 +3,7 @@
         <div class="navbar-header">
             <p class="navbar-text pull-left">
                 <a href="#/user/{{model.uid}}/website/{{model.wid}}/page" class="navbar-link">
-                  <span class="glyphicon glyphicon-menu-left">
-                  </span>
+                  <span class="glyphicon glyphicon-menu-left"></span>
                 </a>
             </p>
             <a class="navbar-brand">
@@ -12,8 +11,7 @@
             </a>
             <p class="navbar-text pull-right">
                 <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link">
-                  <span class="glyphicon glyphicon-plus">
-                  </span>
+                  <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </p>
         </div>
@@ -21,7 +19,7 @@
 </nav>
 
 <div class="container">
-
+    <div class="widget-container">
     <div ng-repeat="widget in model.widgets"
          ng-switch="widget.widgetType">
         <div class="mr-widget-tool">
@@ -54,6 +52,7 @@
             <iframe width="{{widget.width}}" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <div ng-switch-default>{{widget}}</div>
+    </div>
     </div>
 </div>
 
