@@ -26,10 +26,11 @@ module.exports = function (app, model) {
     app.delete("/api/widget/:wgid", deleteWidget);
 
     function uploadImage(req, res) {
-        console.log("here");
-
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
+        var uid           = req.body.uid;
+        var wid           = req.body.wid;
+        var pid           = req.body.pid;
         var myFile        = req.file;
 
         var originalname  = myFile.originalname; // file name on user's computer
@@ -46,7 +47,7 @@ module.exports = function (app, model) {
             }
         }
 
-        res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/"+widgetId);
+        res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
     }
 
     function createWidget(req, res) {
