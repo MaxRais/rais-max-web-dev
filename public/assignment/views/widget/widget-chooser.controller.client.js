@@ -46,10 +46,20 @@
         function createWidget(widgetType) {
             var newWidget = {
                 _id: 0,
-                widgetType: widgetType
+                widgetType: widgetType,
+                pageId: pid
             };
-            WidgetService.createWidget(pid, newWidget);
-            $location.url("/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+newWidget._id);
+            WidgetService
+                .createWidget(pid, newWidget)
+                .then(
+                    function(response) {
+                        var newWidget = response.data;
+                        $location.url("/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+newWidget._id);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
     }
 })();

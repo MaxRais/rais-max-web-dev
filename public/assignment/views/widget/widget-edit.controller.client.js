@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("WidgetEditController", WidgetEditController);
 
-    function WidgetEditController($routeParams, WidgetService) {
+    function WidgetEditController($routeParams, $location, WidgetService) {
         var vm = this;
         var uid = $routeParams.uid;
         var wid = $routeParams.wid;
@@ -34,23 +34,29 @@
         }
 
         function updateWidget() {
-            var result = WidgetService.updateWidget(vm.widget._id, vm.widget);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            WidgetService
+                .updateWidget(vm.widget._id, vm.widget)
+                .then(
+                    function (response) {
+                        vm.success = "Widget successfully updated";
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function deleteWidget() {
-            var result = WidgetService.deleteWidget(vm.widget._id);
-            if(result) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "Could not update user";
-            }
+            WidgetService
+                .deleteWidget(vm.widget._id)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
     }

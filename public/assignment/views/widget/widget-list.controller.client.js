@@ -16,7 +16,16 @@
         vm.uid = uid;
         vm.wid = wid;
         vm.pid = pid;
-        vm.widgets = WidgetService.findWidgetsByPageId(pid);
+        WidgetService
+            .findWidgetsByPageId(pid)
+            .then(
+                function (response) {
+                    vm.widgets = response.data;
+                },
+                function (error) {
+                    vm.error = error.data;
+                }
+            );
 
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
@@ -37,6 +46,6 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        $(".widget-container").sortable();
+        //$(".widget-container").sortable();
     }
 })();

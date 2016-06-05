@@ -35,13 +35,13 @@
             PageService
                 .updatePage(vm.page._id, vm.page)
                 .then(
-                function (response) {
-                    vm.success = "Page successfully updated";
-                },
-                function (error) {
-                    vm.error = error.data;
-                }
-            );
+                    function (response) {
+                        vm.success = "Page successfully updated";
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                );
         }
 
         function deletePage() {
