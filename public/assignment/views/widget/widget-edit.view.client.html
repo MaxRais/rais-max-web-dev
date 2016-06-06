@@ -86,19 +86,23 @@
         </form>
     </div>
 
-    <form action="/api/upload" method="post" enctype="multipart/form-data">
-        <input  name="myFile"   type="file" class="form-control"/>
-        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
-        <input  name="widgetId" value="{{model.widget._id}}"     style="display: none"/>
-        <input  name="pid" value="{{model.pid}}"     style="display: none"/>
-        <input  name="wid" value="{{model.wid}}"     style="display: none"/>
-        <input  name="uid" value="{{model.uid}}"     style="display: none"/>
-        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
-    </form>
+    <div ng-switch="model.widget.widgetType">
+        <div ng-switch-when="IMAGE">
+            <form action="/api/upload" method="post" enctype="multipart/form-data">
+                <input  name="myFile"   type="file" class="form-control"/>
+                <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+                <input  name="widgetId" value="{{model.widget._id}}"     style="display: none"/>
+                <input  name="pid" value="{{model.pid}}"     style="display: none"/>
+                <input  name="wid" value="{{model.wid}}"     style="display: none"/>
+                <input  name="uid" value="{{model.uid}}"     style="display: none"/>
+                <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+            </form>
 
-    <a class="btn btn-primary btn-block btn-flickr"
-       href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/flickr">
-        Flickr</a>
+            <a class="btn btn-primary btn-block btn-flickr"
+               href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/flickr">
+                Flickr</a>
+        </div>
+    </div>
 
     <a ng-click="model.deleteWidget()"
        class="btn btn-danger btn-block"
