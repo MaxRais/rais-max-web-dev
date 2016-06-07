@@ -2,7 +2,7 @@
  * Created by MaxRais on 6/2/16.
  */
 
-module.exports = function (app, model) {
+module.exports = function (app, models) {
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
