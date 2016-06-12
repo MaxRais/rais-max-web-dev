@@ -5,18 +5,7 @@
 module.exports = function (app, models) {
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
-    var widgets = [
-        { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-        { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "http://lorempixel.com/400/200/"},
-        { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-        { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://youtu.be/AM2Ivdi9c4E" },
-        { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-    ];
+    var widgetModel = models.widgetModel;
 
     app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.post("/api/page/:pid/widget", createWidget);
@@ -57,56 +46,78 @@ module.exports = function (app, models) {
 
     function createWidget(req, res) {
         var widget = req.body;
+        var pid = req.params["pid"];
 
-        widget._id = (new Date().getTime()) + "";
-        widgets.push(widget);
-        res.json(widget);
+        widgetModel
+            .createWidget(pid, widget)
+            .then(
+                function(widget) {
+                    res.json(widget);
+                },
+                function(error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
     function findAllWidgetsForPage(req, res) {
         var id = req.params["pid"];
-        var result = [];
-        for(var i in widgets) {
-            if(widgets[i].pageId === id) {
-                result.push(widgets[i]);
-            }
-        }
-        res.send(result);
+
+        widgetModel
+            .findAllWidgetsForPage(id)
+            .then(
+                function(widgets) {
+                    res.json(widgets);
+                },
+                function(error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
     function findWidgetById(req, res) {
         var wid = req.params["wgid"];
-        for(var i in widgets) {
-            if(widgets[i]._id === wid) {
-                res.json(widgets[i]);
-                return;
-            }
-        }
-        res.send({});
+
+        widgetModel
+            .findWidgetById(wid)
+            .then(
+                function(widget) {
+                    res.send(widget);
+                },
+                function(error) {
+                    res.sendStatus(404);
+                }
+            );
     }
 
     function updateWidget(req, res) {
         var id = req.params["wgid"];
         var newWidget = req.body;
-        for(var i in widgets) {
-            if(widgets[i]._id === id) {
-                widgets[i] = newWidget;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Widget not found");
+
+        widgetModel
+            .updateWidget(id, newWidget)
+            .then(
+                function(widget) {
+                    res.sendStatus(200);
+                },
+                function(error){
+                    res.sendStatus(404);
+                }
+            );
     }
 
     function deleteWidget(req, res) {
         var id = req.params["wgid"];
-        for(var i in widgets) {
-            if(widgets[i]._id === id) {
-                widgets.splice(i,1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Widget not found");
+
+        widgetModel
+            .deleteWidget(id)
+            .then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.sendStatus(404);
+                }
+            );
     }
 };

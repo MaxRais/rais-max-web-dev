@@ -2,16 +2,44 @@
  * Created by MaxRais on 6/12/16.
  */
 
-/**
- * Created by MaxRais on 6/12/16.
- */
-
 module.exports = function() {
     var mongoose = require("mongoose");
     var WidgetSchema = require("./widget.schema.server.js")();
-    var Widget = mongoose.model("Widge", WidgetSchema);
+    var Widget = mongoose.model("Widget", WidgetSchema);
 
     var api = {
+        createWidget: createWidget,
+        findAllWidgetsForPage: findAllWidgetsForPage,
+        findWidgetById: findWidgetById,
+        updateWidget: updateWidget,
+        deleteWidget: deleteWidget,
+        reorderWidget: reorderWidget
     };
+
     return api;
+    
+    function createWidget(id, widget) {
+        widget._page = id;
+        return Widget.create(widget);
+    }
+
+    function findAllWidgetsForPage(id) {
+        return Widget.find({_page: id});
+    }
+
+    function findWidgetById(id) {
+        return Widget.findById(id);
+    }
+
+    function updateWidget(id, widget) {
+        return Widget.update({_id: id}, widget);
+    }
+
+    function deleteWidget(id) {
+        return Widget.remove({_id: id})
+    }
+
+    function reorderWidget(id, start, end) {
+
+    }
 };

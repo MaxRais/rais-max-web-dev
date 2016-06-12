@@ -45,9 +45,7 @@
 
         function createWidget(widgetType) {
             var newWidget = {
-                _id: 0,
-                widgetType: widgetType,
-                pageId: pid
+                type: widgetType
             };
             WidgetService
                 .createWidget(pid, newWidget)

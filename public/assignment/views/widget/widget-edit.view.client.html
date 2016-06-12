@@ -20,11 +20,11 @@
 </nav>
 
 <div class="container">
-    <div ng-switch="model.widget.widgetType">
+    <div ng-switch="model.widget.type">
         <form ng-switch-when="HEADER">
             <div class="form-group">
                 <label for="headname">Name</label>
-                <input type="text" class="form-control" id="headname" placeholder="Senate Hearing">
+                <input ng-model="model.widget.name" type="text" class="form-control" id="headname" placeholder="Senate Hearing">
             </div>
             <div class="form-group">
                 <label for="headtext">Text</label>
@@ -47,11 +47,11 @@
         <form ng-switch-when="YOUTUBE">
             <div class="form-group">
                 <label for="ytname">Name</label>
-                <input type="text" class="form-control" id="ytname" placeholder="Senate Hearing">
+                <input ng-model="model.widget.name" type="text" class="form-control" id="ytname" placeholder="Senate Hearing">
             </div>
             <div class="form-group">
                 <label for="yttext">Text</label>
-                <input type="text" class="form-control" id="yttext" placeholder="US Senate reaches agreement on new motion.">
+                <input ng-model="model.widget.text" type="text" class="form-control" id="yttext" placeholder="US Senate reaches agreement on new motion.">
             </div>
             <div class="form-group">
                 <label for="yturl">URL</label>
@@ -67,11 +67,11 @@
         <form ng-switch-when="IMAGE">
             <div class="form-group">
                 <label for="imgname">Name</label>
-                <input type="text" class="form-control" id="imgname" placeholder="Senate Hearing">
+                <input ng-model="model.widget.name" type="text" class="form-control" id="imgname" placeholder="Senate Hearing">
             </div>
             <div class="form-group">
                 <label for="imgtext">Text</label>
-                <input type="text" class="form-control" id="imgtext" placeholder="US Senate reaches agreement on new motion.">
+                <input ng-model="model.widget.text" type="text" class="form-control" id="imgtext" placeholder="US Senate reaches agreement on new motion.">
             </div>
             <div class="form-group">
                 <label for="imgurl">URL</label>
@@ -93,7 +93,7 @@
                  ['indent','outdent'],['html']]">
             </div>
         </form>
-        <form ng-switch-when="TEXT">
+        <form ng-switch-when="INPUT">
             <div>
                 <label for="txt">Text</label>
                 <input ng-model="model.widget.text" id="txt" class="form-control"/>
