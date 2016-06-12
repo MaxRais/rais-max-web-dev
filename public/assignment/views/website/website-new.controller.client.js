@@ -16,9 +16,8 @@
 
         function create (name, desc) {
             var website = {
-                "_id": 0,
                 "name": name,
-                "developerId": uid
+                "description": desc
             };
             WebsiteService
                 .createWebsite(uid, website)

@@ -8,11 +8,32 @@ module.exports = function() {
     var Website = mongoose.model("Website", WebsiteSchema);
 
     var api = {
-        findAllWebsitesForUser: findAllWebsitesForUser
+        createWebsiteForUser: createWebsiteForUser,
+        findAllWebsitesForUser: findAllWebsitesForUser,
+        findWebsiteById: findWebsiteById,
+        updateWebsite: updateWebsite,
+        deleteWebsite: deleteWebsite
     };
     return api;
+    
+    function createWebsiteForUser(id, website) {
+        website._user = id;
+        return Website.create(website);
+    }
 
     function findAllWebsitesForUser(id) {
         return Website.find({_user: id});
+    }
+
+    function findWebsiteById(id) {
+        return Website.findById(id);
+    }
+
+    function updateWebsite(id, website) {
+        return Website.update({_id: id}, website);
+    }
+
+    function deleteWebsite(id) {
+        return Website.remove({_id: id})
     }
 };
