@@ -6,7 +6,6 @@ module.exports = function (app, models) {
 
     var websiteModel = models.websiteModel;
 
-
     app.post("/api/user/:uid/website", createWebsite);
     app.get("/api/user/:uid/website", findAllWebsitesForUser);
     app.get("/api/website/:wid", findWebsiteById);
@@ -66,7 +65,7 @@ module.exports = function (app, models) {
         websiteModel
             .updateWebsite(id, newWebsite)
             .then(
-                function(user) {
+                function(website) {
                     res.sendStatus(200);
                 },
                 function(error) {

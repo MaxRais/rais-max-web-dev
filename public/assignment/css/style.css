@@ -19,6 +19,14 @@ p.navbar-text.pull-left {
     margin-left: 15px;
 }
 
+.navbar-header {
+    width: 100%;
+}
+
+.navbar-fixed-bottom {
+    width: 100%;
+}
+
 .mr-widget-tool {
     position: absolute;
     right: 15px;

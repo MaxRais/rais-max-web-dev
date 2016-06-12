@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label for="title">Page Description</label>
-            <input type="text" class="form-control" id="title" placeholder="Page Title">
+            <input ng-model="model.page.description" type="text" class="form-control" id="title" placeholder="Shows Posts">
         </div>
     </form>
     <a ng-click="model.deletePage()"

@@ -18,9 +18,8 @@
 
         function create (name, desc) {
             var page = {
-                "_id": 0,
                 "name": name,
-                "websiteId": wid
+                "description": desc
             };
             PageService
                 .createPage(wid, page)
