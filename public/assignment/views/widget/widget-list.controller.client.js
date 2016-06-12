@@ -47,6 +47,9 @@
         }
 
         $(".widget-container")
-            .sortable({axis: "y"});
+            .sortable({
+                axis: "y",
+                handle: ".mr-widget-tool"
+            });
     }
 })();

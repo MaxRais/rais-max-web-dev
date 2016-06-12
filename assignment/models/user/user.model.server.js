@@ -23,23 +23,30 @@ module.exports = function() {
         return User.create(user);
     }
 
-    function findUserByUsername() {
-
+    function findUserByUsername(username) {
+        return User.findOne({username: username});
     }
 
-    function findUserByCredentials() {
-
+    function findUserByCredentials(username, password) {
+        return User.findOne({username: username, password: password});
     }
 
     function findUserById(id) {
         return User.findById(id);
     }
 
-    function updateUser() {
-
+    function updateUser(id, newUser) {
+        return User.update(
+            {_id: id},
+            {
+                $set: {
+                    firstName: newUser.firstName,
+                    lastName: newUser.lastName
+                }
+            });
     }
 
-    function deleteUser() {
-
+    function deleteUser(id) {
+        return User.remove({_id: id});
     }
 };

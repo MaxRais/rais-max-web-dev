@@ -34,7 +34,7 @@
         }
         
         function findUserByUsername(username) {
-            var url = "/api/user/"+id;
+            var url = "/api/user?username="+username;
             return $http.get(url);
         }
 

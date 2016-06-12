@@ -84,6 +84,27 @@
                        type="text" class="form-control" id="imgwidth" placeholder="100%">
             </div>
         </form>
+        <form ng-switch-when="HTML">
+            <div class="form-group"
+                 ng-model="model.widget.text"
+                 text-angular
+                 ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                 ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                 ['indent','outdent'],['html']]">
+            </div>
+        </form>
+        <form ng-switch-when="TEXT">
+            <div>
+                <label for="txt">Text</label>
+                <input ng-model="model.widget.text" id="txt" class="form-control"/>
+                <label for="rows">Rows</label>
+                <input ng-model="model.widget.rows" id="rows" class="form-control" type="number"/>
+                <label for="placeholder">Placeholder</label>
+                <input ng-model="model.widget.placeholder" id="placeholder" class="form-control"/>
+                <label for="format">Formatted</label>
+                <input ng-model="model.widget.formatted" id="format" type="checkbox"/>
+            </div>
+        </form>
     </div>
 
     <div ng-switch="model.widget.widgetType">

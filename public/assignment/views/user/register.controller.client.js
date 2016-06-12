@@ -16,7 +16,7 @@
             if(password === confirm) {
                 var user = {
                     username: username,
-                    password: password,
+                    password: password
                 };
 
                 UserService

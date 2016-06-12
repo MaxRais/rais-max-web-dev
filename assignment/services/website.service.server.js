@@ -3,6 +3,9 @@
  */
 
 module.exports = function (app, models) {
+
+    var websiteModel = models.websiteModel;
+
     var websites = [
         {"_id": "123", "name": "Facebook", "developerId": "456"},
         {"_id": "234", "name": "Tweeter", "developerId": "456"},
@@ -35,13 +38,17 @@ module.exports = function (app, models) {
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params["uid"];
-        var result = [];
-        for(var i in websites) {
-            if(websites[i].developerId === userId) {
-                result.push(websites[i]);
-            }
-        }
-        res.send(result);
+
+        websiteModel
+            .findAllWebsitesForUser(userId)
+            .then(
+                function(websites) {
+                    res.json(websites);
+                },
+                function(error) {
+                    res.sendStatus(400);
+                }
+            );
     }
 
     function findWebsiteById(req, res) {
