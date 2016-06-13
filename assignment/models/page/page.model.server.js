@@ -30,6 +30,7 @@ module.exports = function() {
     }
 
     function updatePage(id, page) {
+        delete page._id;
         return Page.update({_id: id}, page);
     }
 

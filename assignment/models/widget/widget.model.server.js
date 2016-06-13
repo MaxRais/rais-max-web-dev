@@ -37,6 +37,7 @@ module.exports = function() {
     }
 
     function updateWidget(id, widget) {
+        delete widget._id;
         return Widget.update({_id: id}, widget);
     }
 

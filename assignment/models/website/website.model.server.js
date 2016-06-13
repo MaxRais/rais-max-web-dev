@@ -30,6 +30,7 @@ module.exports = function() {
     }
 
     function updateWebsite(id, website) {
+        delete website._id;
         return Website.update({_id: id}, website);
     }
 
