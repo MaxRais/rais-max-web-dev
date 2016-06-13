@@ -133,15 +133,36 @@ module.exports = function (app, models) {
         var start = parseInt(req.query.start);
         var end = parseInt(req.query.end);
         var id = req.params["pid"];
+
         widgetModel
-            .reorderWidget(id, start, end)
-            .then(
-                function(response) {
+            .findAllWidgetsForPage(id)
+            .then(function(widgets){
+                widgets.forEach(function(widget){
+                    if(start < end) {
+                        if(widget.order > start && widget.order < end) {
+                            widget.order--;
+                            widget.save();
+                        } else if(widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                        }
+                    } else {
+                        if(widget.order >= end && widget.order < start) {
+                            widget.order++;
+                            widget.save();
+                        } else if(widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                        }
+                    }
+                    widgetModel
+                        .updateWidget(widget._id, widget)
+                        .then(
+                            function(widget) {
 
-                },
-                function(error) {
-
-                }
-            );
+                            }
+                        )
+                });
+            });
     }
 };

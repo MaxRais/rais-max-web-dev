@@ -13,7 +13,6 @@ module.exports = function() {
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget
     };
 
     return api;
@@ -43,36 +42,5 @@ module.exports = function() {
 
     function deleteWidget(id) {
         return Widget.remove({_id: id})
-    }
-
-    function reorderWidget(id, start, end) {
-        return Widget.find(function(err, widgets){
-            widgets.forEach(function(widget){
-                if(start < end) {
-                    if(widget.order >= start && widget.order < end) {
-                        widget.order--;
-                        widget.save();
-                    } else if(widget.order === start) {
-                        widget.order = end;
-                        widget.save();
-                    }
-                } else {
-                    if(widget.order >= end && widget.order < start) {
-                        widget.order++;
-                        widget.save();
-                    } else if(widget.order === start) {
-                        widget.order = end;
-                        widget.save();
-                    }
-                }
-            });
-//            updateAllWidgets(widgets);
-        });
-    }
-
-    function updateAllWidgets(widgets) {
-        widgets.forEach(function(widget){
-            Widget.update({_id: widget._id}, widget);
-        });
     }
 };
