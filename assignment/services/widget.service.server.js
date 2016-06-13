@@ -13,6 +13,7 @@ module.exports = function (app, models) {
     app.get("/api/widget/:wgid", findWidgetById);
     app.put("/api/widget/:wgid", updateWidget);
     app.delete("/api/widget/:wgid", deleteWidget);
+    app.put("/api/page/:pid/widget", sortWidgets);
 
     function uploadImage(req, res) {
         var widgetId      = req.body.widgetId;
@@ -34,14 +35,21 @@ module.exports = function (app, models) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                widgets[i].url = "/uploads/"+filename;
-                widgets[i].width = width;
-            }
-        }
-
-        res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function(widget) {
+                    widget.url = "/uploads/"+filename;
+                    widget.width = width;
+                    widgetModel
+                        .updateWidget(widgetId, widget)
+                        .then(
+                            function(widget) {
+                                res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+widgetId);
+                            }
+                        );
+                }
+            );
     }
 
     function createWidget(req, res) {
@@ -117,6 +125,22 @@ module.exports = function (app, models) {
                 },
                 function(error) {
                     res.sendStatus(404);
+                }
+            );
+    }
+
+    function sortWidgets(req, res) {
+        var start = parseInt(req.query.start);
+        var end = parseInt(req.query.end);
+        var id = req.params["pid"];
+        widgetModel
+            .reorderWidget(id, start, end)
+            .then(
+                function(response) {
+
+                },
+                function(error) {
+
                 }
             );
     }

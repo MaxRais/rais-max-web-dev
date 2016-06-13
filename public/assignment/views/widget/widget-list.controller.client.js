@@ -29,6 +29,7 @@
 
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
+        vm.sorted = sorted;
 
         function getTrustedHtml(widget) {
             var html = $sce.trustAsHtml(widget.text);
@@ -46,10 +47,20 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        $(".widget-container")
-            .sortable({
-                axis: "y",
-                handle: ".mr-widget-tool"
-            });
+        function sorted(startIndex, endIndex) {
+            console.log("ExperimentsController");
+            console.log(startIndex);
+            console.log(endIndex);
+            WidgetService
+                .sortWidgets(pid, startIndex, endIndex)
+                .then(
+                    function(response) {
+
+                    },
+                    function(error) {
+
+                    }
+                );
+        }
     }
 })();

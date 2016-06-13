@@ -20,7 +20,13 @@ module.exports = function() {
     
     function createWidget(id, widget) {
         widget._page = id;
-        return Widget.create(widget);
+        return findAllWidgetsForPage(id)
+            .then(
+                function(widgets) {
+                    widget.order = widgets.length;
+                    return Widget.create(widget);
+                }
+            );
     }
 
     function findAllWidgetsForPage(id) {
@@ -40,6 +46,33 @@ module.exports = function() {
     }
 
     function reorderWidget(id, start, end) {
+        return Widget.find(function(err, widgets){
+            widgets.forEach(function(widget){
+                if(start < end) {
+                    if(widget.order >= start && widget.order < end) {
+                        widget.order--;
+                        widget.save();
+                    } else if(widget.order === start) {
+                        widget.order = end;
+                        widget.save();
+                    }
+                } else {
+                    if(widget.order >= end && widget.order < start) {
+                        widget.order++;
+                        widget.save();
+                    } else if(widget.order === start) {
+                        widget.order = end;
+                        widget.save();
+                    }
+                }
+            });
+//            updateAllWidgets(widgets);
+        });
+    }
 
+    function updateAllWidgets(widgets) {
+        widgets.forEach(function(widget){
+            Widget.update({_id: widget._id}, widget);
+        });
     }
 };
