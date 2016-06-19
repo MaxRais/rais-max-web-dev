@@ -10,10 +10,12 @@
                 New Website
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.create(name, desc)"
-                   href="#/user/{{model.uid}}/website"  class="navbar-link">
+                <button type="submit"
+                        form="newWebsite"
+                        ng-click="model.create(name, desc)"
+                        class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -23,12 +25,15 @@
     <div ng-if="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
-    <form>
+    <form name="newWebsite" id="newWebsite" novalidate>
         <div class="form-group">
             <label for="name">Website Name</label>
-            <textarea ng-model="name"
-                    rows="1" type="text" class="form-control" id="name" placeholder="Blogger"></textarea>
+            <input ng-model="name" required
+                    name="name" type="text" class="form-control" id="name" placeholder="Blogger"/>
         </div>
+        <span ng-show="newWebsite.$submitted && newWebsite.name.$invalid">
+            Must have a name for the website
+        </span>
         <div class="form-group">
             <label for="description">Website Description</label>
             <textarea ng-model="desc"

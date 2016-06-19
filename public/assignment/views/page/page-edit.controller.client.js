@@ -32,16 +32,19 @@
         }
 
         function updatePage() {
-            PageService
-                .updatePage(vm.page._id, vm.page)
-                .then(
-                    function (response) {
-                        vm.success = "Page successfully updated";
-                    },
-                    function (error) {
-                        vm.error = error.data;
-                    }
-                );
+            if(vm.page.name) {
+                PageService
+                    .updatePage(vm.page._id, vm.page)
+                    .then(
+                        function (response) {
+                            vm.success = "Page successfully updated";
+                            $location.url("/user/"+uid+"/website/"+wid+"/page");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            }
         }
 
         function deletePage() {

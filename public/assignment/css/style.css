@@ -3,6 +3,7 @@ input {
 }
 
 .btn {
+    margin-bottom: 5px;
     border-radius: 20px;
 }
 
@@ -70,4 +71,13 @@ p.navbar-text.pull-left {
 .btn.btn-flickr {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+form.ng-submitted input.ng-invalid {
+    background-color: rgba(255, 68, 75, 0.56);
+}
+
+button {
+    border: none;
+    background: none;
 }

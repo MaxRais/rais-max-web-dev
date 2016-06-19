@@ -13,7 +13,7 @@
         vm.register = register;
 
         function register (username, password, confirm) {
-            if(password === confirm) {
+            if(username && password && confirm && password === confirm) {
                 var user = {
                     username: username,
                     password: password

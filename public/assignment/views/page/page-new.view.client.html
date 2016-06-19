@@ -10,10 +10,12 @@
                 New Page
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.create(name, desc)"
-                   href="#/user/{{model.uid}}/website/{{model.wid}}/page" class="navbar-link">
+                <button type="submit"
+                        form="newPage"
+                        ng-click="model.create(name, desc)"
+                        class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -23,11 +25,19 @@
     <div ng-if="model.error" class="alert alert-danger">
         {{model.error}}
     </div>
-    <form>
+    <form name="newPage" id="newPage" novalidate>
         <div class="form-group">
             <label for="name">Name</label>
-            <input ng-model="name" type="text" class="form-control" id="name" placeholder="My First Page">
+            <input required
+                   ng-model="name"
+                   type="text"
+                   class="form-control"
+                   id="name" name="name"
+                   placeholder="My First Page">
         </div>
+        <span ng-show="newPage.$submitted && newPage.name.$invalid">
+            Must have a name for the page
+        </span>
         <div class="form-group">
             <label for="title">Page Description</label>
             <input ng-model="desc" type="text" class="form-control" id="title" placeholder="Blog">

@@ -31,16 +31,19 @@
         }
         
         function updateWebsite() {
-            WebsiteService
-                .updateWebsite(vm.website._id, vm.website)
-                .then(
-                    function (response) {
-                        vm.success = "Website successfully updated";
-                    },
-                    function (error) {
-                        vm.error = error.data;
-                    }
-                );
+            if(vm.website.name) {
+                WebsiteService
+                    .updateWebsite(vm.website._id, vm.website)
+                    .then(
+                        function (response) {
+                            vm.success = "Website successfully updated";
+                            $location.url("/user/"+uid+"/website")
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            }
         }
 
         function deleteWebsite() {

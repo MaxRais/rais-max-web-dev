@@ -145,7 +145,7 @@ module.exports = function (app, models) {
                         return userModel
                             .createUser(req.body);
                     }
-                    console.log(user);
+                    //console.log(user);
                     res.send(200);
                 },
                 function(error) {
@@ -247,7 +247,7 @@ module.exports = function (app, models) {
 
     function deleteUser(req, res) {
         var id = req.params["uid"];
-        console.log(id);
+        //console.log(id);
 
         userModel
             .deleteUser(id)

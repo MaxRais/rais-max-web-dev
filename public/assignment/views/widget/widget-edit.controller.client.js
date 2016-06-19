@@ -37,16 +37,19 @@
         }
 
         function updateWidget() {
-            WidgetService
-                .updateWidget(vm.widget._id, vm.widget)
-                .then(
-                    function (response) {
-                        vm.success = "Widget successfully updated";
-                    },
-                    function (error) {
-                        vm.error = error.data;
-                    }
-                );
+            if(vm.widget.name || vm.widget.type === "HTML" || vm.widget.type === "INPUT") {
+                WidgetService
+                    .updateWidget(vm.widget._id, vm.widget)
+                    .then(
+                        function (response) {
+                            vm.success = "Widget successfully updated";
+                            $location.url("/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            }
         }
 
         function deleteWidget() {

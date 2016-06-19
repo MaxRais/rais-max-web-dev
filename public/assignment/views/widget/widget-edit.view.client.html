@@ -10,10 +10,12 @@
                 Widget Edit
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWidget()"
-                   href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
+                <button type="submit"
+                        form="widget"
+                        ng-click="model.updateWidget()"
+                        class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -21,11 +23,18 @@
 
 <div class="container">
     <div ng-switch="model.widget.type">
-        <form ng-switch-when="HEADER">
+        <form name="widget" id="widget" novalidate>
+        <div ng-switch-when="HEADER">
             <div class="form-group">
                 <label for="headname">Name</label>
-                <input ng-model="model.widget.name" type="text" class="form-control" id="headname" placeholder="Senate Hearing">
+                <input ng-model="model.widget.name" required
+                       type="text" class="form-control"
+                       name="headname" id="headname"
+                       placeholder="Senate Hearing">
             </div>
+            <span ng-show="widget.$submitted && widget.headname.$invalid">
+                Must have a name for the widget
+            </span>
             <div class="form-group">
                 <label for="headtext">Text</label>
                 <input ng-model="model.widget.text"
@@ -43,12 +52,19 @@
                     <option value="6">6</option>
                 </select>
             </div>
-        </form>
-        <form ng-switch-when="YOUTUBE">
+        </div>
+        <div ng-switch-when="YOUTUBE">
             <div class="form-group">
                 <label for="ytname">Name</label>
-                <input ng-model="model.widget.name" type="text" class="form-control" id="ytname" placeholder="Senate Hearing">
+                <input ng-model="model.widget.name" required
+                       type="text"
+                       class="form-control"
+                       id="ytname" name="ytname"
+                       placeholder="Senate Hearing">
             </div>
+            <span ng-show="widget.$submitted && widget.ytname.$invalid">
+                Must have a name for the widget
+            </span>
             <div class="form-group">
                 <label for="yttext">Text</label>
                 <input ng-model="model.widget.text" type="text" class="form-control" id="yttext" placeholder="US Senate reaches agreement on new motion.">
@@ -63,12 +79,19 @@
                 <input ng-model="model.widget.width"
                        type="text" class="form-control" id="ytwidth" placeholder="100%">
             </div>
-        </form>
-        <form ng-switch-when="IMAGE">
+        </div>
+        <div ng-switch-when="IMAGE">
             <div class="form-group">
                 <label for="imgname">Name</label>
-                <input ng-model="model.widget.name" type="text" class="form-control" id="imgname" placeholder="Senate Hearing">
+                <input ng-model="model.widget.name" required
+                       type="text"
+                       class="form-control"
+                       id="imgname" name="imgname"
+                       placeholder="Senate Hearing">
             </div>
+            <span ng-show="widget.$submitted && widget.imgname.$invalid">
+                Must have a name for the widget
+            </span>
             <div class="form-group">
                 <label for="imgtext">Text</label>
                 <input ng-model="model.widget.text" type="text" class="form-control" id="imgtext" placeholder="US Senate reaches agreement on new motion.">
@@ -83,8 +106,8 @@
                 <input ng-model="model.widget.width"
                        type="text" class="form-control" id="imgwidth" placeholder="100%">
             </div>
-        </form>
-        <form ng-switch-when="HTML">
+        </div>
+        <div ng-switch-when="HTML">
             <div class="form-group"
                  ng-model="model.widget.text"
                  text-angular
@@ -92,8 +115,8 @@
                  ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
                  ['indent','outdent'],['html']]">
             </div>
-        </form>
-        <form ng-switch-when="INPUT">
+        </div>
+        <div ng-switch-when="INPUT">
             <div>
                 <label for="txt">Text</label>
                 <input ng-model="model.widget.text" id="txt" class="form-control"/>
@@ -104,6 +127,7 @@
                 <label for="format">Formatted</label>
                 <input ng-model="model.widget.formatted" id="format" type="checkbox"/>
             </div>
+        </div>
         </form>
     </div>
 

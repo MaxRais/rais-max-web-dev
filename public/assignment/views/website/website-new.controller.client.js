@@ -15,21 +15,23 @@
         vm.uid = uid;
 
         function create (name, desc) {
-            var website = {
-                "name": name,
-                "description": desc
-            };
-            WebsiteService
-                .createWebsite(uid, website)
-                .then(
-                    function(response) {
-                        var newWebsite = response.data;
-                        $location.url("/user/"+uid+"/website");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                );
+            if(name) {
+                var website = {
+                    "name": name,
+                    "description": desc
+                };
+                WebsiteService
+                    .createWebsite(uid, website)
+                    .then(
+                        function (response) {
+                            var newWebsite = response.data;
+                            $location.url("/user/" + uid + "/website");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    );
+            }
         }
     }
 })();

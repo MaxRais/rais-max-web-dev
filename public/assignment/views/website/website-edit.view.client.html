@@ -10,10 +10,12 @@
                 Edit Website
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateWebsite()"
-                   href="#/user/{{model.uid}}/website" class="navbar-link">
+                <button type="submit"
+                        form="editWebsite"
+                        ng-click="model.updateWebsite()"
+                        class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -24,15 +26,20 @@
         {{model.error}}
     </div>
 
-    <form>
+    <form name="editWebsite" id="editWebsite" novalidate>
         <div class="form-group">
             <label for="name">Website Name</label>
             <input ng-model="model.website.name"
                    type="text"
                    class="form-control"
                    id="name"
-                   placeholder="Blogger">
+                   name="name"
+                   placeholder="Blogger"
+                   required>
         </div>
+        <span ng-show="editWebsite.$submitted && editWebsite.name.$invalid">
+            Must have a name for the website
+        </span>
         <div class="form-group">
             <label for="description">Website Description</label>
             <textarea ng-model="model.website.description" rows="5" class="form-control" id="description" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."></textarea>
