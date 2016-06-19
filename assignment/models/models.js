@@ -8,6 +8,7 @@ module.exports = function() {
     var connectionString = 'mongodb://localhost/cs4550summer1';
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+        process.env.FACEBOOK_CALLBACK_URL = "http://webdev-maxrais.rhcloud.com:8080/auth/facebook/callback";
         connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
             process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
             process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +

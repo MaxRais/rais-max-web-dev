@@ -18,7 +18,7 @@
 
         function updateUser() {
             UserService
-                .updateUser(id, vm.user)
+                .updateUser(vm.user._id, vm.user)
                 .then(
                     function (response) {
                         vm.success = "User successfully updated";
