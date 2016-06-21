@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("LoginController", LoginController);
 
-    function LoginController() {
+    function LoginController($location, $rootScope, UserService) {
 
         var vm = this;
         //vm.login = login;

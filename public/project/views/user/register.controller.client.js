@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController() {
+    function RegisterController($location, $rootScope, UserService) {
 
         var vm = this;
         /*vm.register = register;

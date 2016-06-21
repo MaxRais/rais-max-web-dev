@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController() {
+    function ProfileController($location, $routeParams, $rootScope, UserService) {
         var vm = this;
         /*vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
