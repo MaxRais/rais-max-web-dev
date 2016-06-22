@@ -10,8 +10,8 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/user/login.view.client.html",
-                controller: "LoginController",
+                templateUrl: "views/homepage/homepage.view.client.html",
+                controller: "HomepageController",
                 controllerAs: "model"
             })
             .when("/login", {

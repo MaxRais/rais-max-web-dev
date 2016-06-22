@@ -9,7 +9,7 @@
 
     function ProfileController($location, $routeParams, $rootScope, UserService) {
         var vm = this;
-        /*vm.updateUser = updateUser;
+        vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.logout = logout;
         var id = $routeParams["uid"];
@@ -43,11 +43,11 @@
         }
 
         function init() {
-            UserService
+            /*UserService
                 .findUserById(id)
                 .then(function (response) {
                     vm.user = response.data;
-                });
+                });*/
             vm.user = $rootScope.currentUser;
         }
 
@@ -64,6 +64,6 @@
                         $location.url("/login");
                     }
                 );
-        }*/
+        }
     }
 })();

@@ -1,8 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <a href="#/" class="navbar-brand">
+              Home
+            </a>
+            <a class="navbar-brand">  
+              >
+            </a>
             <a class="navbar-brand">
-                Profile
+              Profile
             </a>
             <p class="navbar-text pull-right">
                 <a ng-click="model.updateUser()" class="navbar-link">
@@ -57,7 +63,7 @@
         </div>
     </form>
     <a class="btn btn-primary btn-block"
-       href="#/user/{{model.user._id}}/website">Websites</a>
+       href="#/user/{{model.user._id}}/website">Brackets</a>
     <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
     <a ng-click="model.deleteUser()"
        class="btn btn-danger btn-block">Delete Account</a>

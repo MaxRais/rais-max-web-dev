@@ -10,9 +10,9 @@
     function LoginController($location, $rootScope, UserService) {
 
         var vm = this;
-        //vm.login = login;
+        vm.login = login;
 
-        /*function login (username, password) {
+        function login (username, password) {
             var user = UserService
                 .login(username, password)
                 .then(
@@ -29,6 +29,6 @@
                     function (error) {
                         vm.error = error.data;
                     });
-        }*/
+        }
     }
 })();

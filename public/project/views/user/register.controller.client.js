@@ -10,7 +10,7 @@
     function RegisterController($location, $rootScope, UserService) {
 
         var vm = this;
-        /*vm.register = register;
+        vm.register = register;
 
         function register (username, password, confirm) {
             if(username && password && confirm && password === confirm) {
@@ -32,6 +32,6 @@
                         }
                     );
             }
-        }*/
+        }
     }
 })();

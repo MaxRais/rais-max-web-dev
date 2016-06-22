@@ -10,10 +10,8 @@ var passport = require('passport');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
-app.use(passport.session());
 app.use(cookieParser());
 app.use(session({secret: 'process.env.SESSION_SECRET'}));
-app.use(passport.initialize());
 app.use(passport.session());
 
 // configure a public directory to host static content
