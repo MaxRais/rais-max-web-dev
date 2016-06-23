@@ -13,11 +13,11 @@
         vm.login = login;
 
         function login (username, password) {
-            console.log("starting");
-            ChallongeService
+            //console.log("starting");
+           // ChallongeService
                 //.getTournaments()
                 //.getOneTournament("test", true, true)
-                .createTournament("myfirst", "double elimination", "first")
+                //.createTournament("myfirst", "double elimination", "first")
                 //.deleteTournament('test')
                 //.startTournament("test")
                 //.addParticipant('test', 'max', 1)
@@ -25,11 +25,11 @@
                 //.getMatches('test')
                 //.getOneMatch('2654670', 'matchId')
                 //.updateMatch('2654670', 'match', '41859641', 2, 0)
-                .then(function(response) {
-                    console.log(response);
-                });
+               // .then(function(response) {
+               //     console.log(response);
+                //});
 
-            /*var user = UserService
+            var user = UserService
                 .login(username, password)
                 .then(
                     function (response) {
@@ -44,7 +44,7 @@
                     },
                     function (error) {
                         vm.error = error.data;
-                    });*/
+                    });
         }
     }
 })();
