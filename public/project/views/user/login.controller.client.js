@@ -15,14 +15,14 @@
         function login (username, password) {
             console.log("starting");
             ChallongeService
-                .getTournaments()
+                //.getTournaments()
                 //.getOneTournament("test", true, true)
-                //.createTournament("my first", "double elimination", null)
-                //.deleteTournament('2654670')
-                //.startTournament("2654670")
-                //.addParticipant('2654670', 'max', 1)
-                //.deleteParticipant('2654670', '41859639')
-                //.getMatches('test2')
+                .createTournament("my first", "double elimination", "first")
+                //.deleteTournament('test')
+                //.startTournament("test")
+                //.addParticipant('test', 'max', 1)
+                //.deleteParticipant('test', '41862980')
+                //.getMatches('test')
                 //.getOneMatch('2654670', 'matchId')
                 //.updateMatch('2654670', 'match', '41859641', 2, 0)
                 .then(function(response) {

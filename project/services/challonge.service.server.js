@@ -36,7 +36,6 @@ module.exports = function (app) {
         var name = req.params["name"];
         var participants = req.body.include_participants;
         var matches = req.body.include_matches;
-        name.replace('%20', ' ');
         client.tournaments.show({
             id: name,
             includeParticipants: participants,
