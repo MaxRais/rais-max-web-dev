@@ -14,6 +14,21 @@
 
         function login (username, password) {
             console.log("starting");
+            //console.log("starting");
+           // ChallongeService
+                //.getTournaments()
+                //.getOneTournament("test", true, true)
+                //.createTournament("myfirst", "double elimination", "first")
+                //.deleteTournament('test')
+                //.startTournament("test")
+                //.addParticipant('test', 'max', 1)
+                //.deleteParticipant('test', '41862980')
+                //.getMatches('test')
+                //.getOneMatch('2654670', 'matchId')
+                //.updateMatch('2654670', 'match', '41859641', 2, 0)
+               // .then(function(response) {
+               //     console.log(response);
+                //});
 
             var user = UserService
                 .login(username, password)

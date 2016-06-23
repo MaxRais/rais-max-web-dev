@@ -4,6 +4,8 @@
 
 module.exports = function (app) {
     var challonge = require('challonge');
+    var https = require('https');
+    var qs = require('querystring');
 
     var client = challonge.createClient({
         apiKey: process.env.CHALLONGE_API_KEY,
@@ -36,7 +38,6 @@ module.exports = function (app) {
         var name = req.params["name"];
         var participants = req.body.include_participants;
         var matches = req.body.include_matches;
-        name.replace('%20', ' ');
         client.tournaments.show({
             id: name,
             includeParticipants: participants,
@@ -49,15 +50,50 @@ module.exports = function (app) {
     }
 
     function createTournament(req, res) {
-        var newTournament = req.body;
+        var url = "api.challonge.com";
+        var path = "/v1/tournaments.json?"+qs.stringify(req.body);
+        path = path.substring(0, path.length-1);
+        path+="[name]="+req.body.tournament.name;
+        path+="&tournament[url]="+req.body.tournament.url;
+        path+="&tournament[subdomain]="+req.body.tournament.subdomain;
+        var options = {
+            hostname: url,
+            path: path,
+            method: 'POST'
+        };
+        console.log(path);
+        var requ = https.request(options, function(resp){
+            var resData = '';
+            resp.on('data', function(chunk) {
+                resData += chunk;
+            });
+
+            resp.on('end', function() {
+                resData = JSON.parse(resData);
+                res.json(resData);
+            });
+        });
+        requ.end();
+        /*var newTournament = req.body;
         console.log(newTournament);
         client.tournaments.create({
+            tournament: {
+                name: 'new_tournament_name',
+                url: 'new_tournament_url',
+                tournamentType: 'single elimination'
+            },
+            callback: function(err, data){
+                if (err) { res.send(err); return; }
+                res.json(data);
+            }
+        });*/
+        /*client.tournaments.create({
             tournament: newTournament,
             callback: function(err,data){
                 if (err) { res.send(err); return; }
                 res.json(data);
             }
-        });
+        });*/
     }
 
     function deleteTournament(req, res) {

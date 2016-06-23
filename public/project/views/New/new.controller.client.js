@@ -11,11 +11,12 @@
 
         var vm = this;
         vm.setType = setType;
+        vm.createTournament = createTournament;
         function init() {
             vm.user = $rootScope.currentUser;
             vm.name = "";
             vm.url = "";
-            vm.type = "single elimination"
+            vm.type = "single elimination";
             if(!vm.user)
                 vm.user = {username: 'login'};
             $(".dropdown-menu li a").click(function(){
@@ -30,8 +31,8 @@
             console.log(type);
         }
 
-        function createTournament(query) {
-
+        function createTournament() {
+            ChallongeService.createTournament(vm.name, vm.type, vm.url);
         }
 
     }

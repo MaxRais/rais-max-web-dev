@@ -39,10 +39,21 @@
         function createTournament(name, type, customUrl) {
             var json = {
                 name: name,
-                tournament_type: type,
-                customUrl: customUrl ? customUrl : null
+                tournamentType: type,
+                url: customUrl ? customUrl : null
+            };
+
+            json = {
+                api_key: 'u4oHiWqAGVWTnWRkrclDufRswZirQlj88qvKsosl',
+                tournament: {
+                    name: name,
+                    tournament_type: type,
+                    url: customUrl ? customUrl : null,
+                    subdomain: 'brackets'
+                }
             };
             var url = "/api/tournaments";
+            //url = "api.challonge.com/v1/tournaments.json?"+JSON.stringify(json);
             return $http.post(url, json);
         }
 
@@ -58,8 +69,8 @@
 
         function addParticipant(tournament, username, seed) {
             var json = {
-                    name: username,
-                    seed: seed
+                name: username,
+                seed: seed
             };
             var url = "/api/tournaments/"+tournament+"/participants";
             return $http.post(url, json);
