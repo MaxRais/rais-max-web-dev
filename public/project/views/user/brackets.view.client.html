@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="homepage-main">
+    <div class="homepage-nav">  
+      <div class="homepage-nav-left">
+        <a href="/project/index.html#/" class="crumbs-text">
+          Home
+        </a>
+        <span class=" crumbs-arrow">•</span>
+        <a href="#/user/{{model.user._id}}" class="crumbs-text">
+          profile
+        </a>
+        <span class=" crumbs-arrow">•</span>
+        <a class="crumbs-text">
+          by brackets
+        </a>
+      </div>
+      <div class="homepage-nav-right">
+          <a class="nav-link" href="#/login">
+              {{model.user.username}}
+          </a>
+      </div>
+    </div>
+    <div class="homepage-top">
+      <div class="homepage-existing">
+        <form ng-submit="model.search(model.query)" class="input-group search-input-group">
+          <input ng-model="model.query" placeholder="Search for exisiting" type="text" class="form-control search-input" aria-label="...">
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-default search-btn">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="search-results-container"> 
+        <div class="tournament-iframe"></div>
+      </div>
+    </div>
+  </div>
+</div>  

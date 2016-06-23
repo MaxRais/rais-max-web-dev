@@ -48,6 +48,7 @@
                 .then(function (response) {
                     vm.user = response.data;
                 });*/
+            console.log($rootScope);
             vm.user = $rootScope.currentUser;
         }
 

@@ -11,8 +11,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(cookieParser());
-app.use(session({secret: 'process.env.SESSION_SECRET'}));
 app.use(passport.session());
+app.use(session({ 
+	secret: process.env.SESSION_SECRET,
+	resave: true,
+    saveUninitialized: true
+}));
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));

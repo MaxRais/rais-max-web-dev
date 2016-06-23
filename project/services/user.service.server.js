@@ -239,6 +239,16 @@ module.exports = function(app, models) {
             );
     }
 
+    function authenticate(req, res, next) {
+        //console.log(req.user);
+        //console.log(req.isAuthenticated());
+        if(req.isAuthenticated()) {
+            next();
+        }
+        else {
+            res.send(403);
+        }
+    }
 
     function serializeUser(user, done) {
         done(null, user);
