@@ -3,41 +3,142 @@
  */
 
 module.exports = function (app) {
-    //app.post("/api/user", createUser);
+    var challonge = require('challonge');
 
-    //Get all tournaments
-    //GET https://api.challonge.com/v1/tournaments.{json|xml}
+    var client = challonge.createClient({
+        apiKey: process.env.CHALLONGE_API_KEY,
+        format: 'json',
+        version: 1
+    });
 
-    //Show one tournament
-    //GET https://api.challonge.com/v1/tournaments/{tournament}.{json|xml}
-    // Ex/Include matches, Ex/Include participants
+    app.get("/api/tournaments", getTournaments); //Get all tournaments
+    app.get("/api/tournaments/:name", getOneTournament); //Show one tournament
+    app.post("/api/tournaments", createTournament); //Create tournament
+    app.delete("/api/tournaments/:name", deleteTournament); //Delete tournament
+    app.post("/api/tournaments/:name/start", startTournament); //Start tournament
+    app.post("/api/tournaments/:name/participants", addParticipant); //Create participant
+    app.delete("/api/tournaments/:name/participants/:pid", deleteParticipant); //Delete participant
+    app.get("/api/tournaments/:name/matches", getMatches); //Get all matches in a tournament
+    app.get("/api/tournaments/:name/matches/:mid", getOneMatch); //Get one match record
+    app.put("/api/tournaments/:name/matches/:mid", updateMatch); //Update match
 
-    //Create tournament
-    //POST https://api.challonge.com/v1/tournaments.{json|xml}
-    // Name, (Custom URL?), Type (SE, DE, Swiss, RR)
+    function getTournaments(req, res) {
+        client.tournaments.index({
+            callback: function(err, data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Delete tournament
-    //DELETE https://api.challonge.com/v1/tournaments/{tournament}.{json|xml}
+    function getOneTournament(req, res) {
+        var name = req.params["name"];
+        client.tournaments.show({
+            id: name,
+            callback: function(err, data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Start tournament
-    //POST https://api.challonge.com/v1/tournaments/{tournament}/start.{json|xml}
+    function createTournament(req, res) {
+        var newTournament = req.body;
+        console.log(newTournament);
+        client.tournaments.create({
+            tournament: newTournament,
+            callback: function(err,data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Create participant
-    //POST https://api.challonge.com/v1/tournaments/{tournament}/participants.{json|xml}
-    //Name, (username?), (seed?)
+    function deleteTournament(req, res) {
+        var name = req.params["name"];
+        client.tournaments.destroy({
+            id: name,
+            callback: function(err, data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Delete participant
-    //DELETE Help https://api.challonge.com/v1/tournaments/{tournament}/participants/{participant_id}.{json|xml}
+    function startTournament(req, res) {
+        var name = req.params["name"];
+        client.tournaments.start({
+            id: name,
+            callback: function(err, data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Get all matches in a tournament
-    //GET https://api.challonge.com/v1/tournaments/{tournament}/matches.{json|xml}
-    //participant_id
+    function addParticipant(req, res) {
+        var name = req.params["name"];
+        var participant = req.body;
+        client.participants.create({
+            id: name,
+            participant: participant,
+            callback: function(err, data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Get one match record
-    //GET https://api.challonge.com/v1/tournaments/{tournament}/matches/{match_id}.{json|xml}
-    //show_attachments boolean
+    function deleteParticipant(req, res) {
+        var tourney = req.params["name"];
+        var pid = req.params["pid"];
+        client.participants.destroy({
+            id: tourney,
+            participantId: pid,
+            callback: function(err,data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
 
-    //Update match
-    //PUT https://api.challonge.com/v1/tournaments/{tournament}/matches/{match_id}.{json|xml}
-    //Winner_id, p1Score, p2Score
+    function getMatches(req, res) {
+        var name = req.params["name"];
+        client.matches.index({
+            id: name,
+            callback: function(err,data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
+
+    function getOneMatch(req, res) {
+        var name = req.params["name"];
+        var mid = req.params["mid"];
+        client.matches.show({
+            id: name,
+            matchId: mid,
+            callback: function(err,data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
+
+    function updateMatch(req, res) {
+        var name = req.params["name"];
+        var mid = req.params["mid"];
+        var match = req.body;
+        client.matches.update({
+            id: name,
+            matchId: mid,
+            match: match,
+            callback: function(err,data){
+                if (err) { console.log(err); return; }
+                res.json(data);
+            }
+        });
+    }
+
 };
