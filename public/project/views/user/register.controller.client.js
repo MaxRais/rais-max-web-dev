@@ -12,6 +12,11 @@
         var vm = this;
         vm.register = register;
 
+        function init() {
+            vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
+        }
+        init();
+
         function register (username, password, confirm) {
             if(username && password && confirm && password === confirm) {
                 var user = {

@@ -7,12 +7,12 @@
         .module("ChallongeClient")
         .controller("SearchController", SearchController);
 
-    function SearchController($location, $rootScope, $routeParams, ChallongeService) {
+    function SearchController($location, $window, $rootScope, $routeParams, ChallongeService) {
 
         var vm = this;
         vm.search = search;
         function init() {
-            vm.user = $rootScope.currentUser;
+            vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
             vm.query = $routeParams.query || "";
             if(!vm.user)
                 vm.user = {username: 'login'};
@@ -29,7 +29,11 @@
                         function(res) {
                             vm.results = res.data.tournament;
                             console.log("success: ", vm.results);
-                            $('.tournament-iframe').challonge(vm.results.url, {subdomain: vm.results.subdomain, theme: '1', multiplier: '1.0', match_width_multiplier: '1.0', show_final_results: '0', show_standings: '0'});
+                            if(vm.results)
+                                $('.tournament-iframe').challonge(vm.results.url, {subdomain: vm.results.subdomain, theme: '1', multiplier: '1.0', match_width_multiplier: '1.0', show_final_results: '0', show_standings: '0'});
+                            else
+                                $('.tournament-iframe').challonge("", { theme: '1', multiplier: '1.0', match_width_multiplier: '1.0', show_final_results: '0', show_standings: '0'});
+
                         },
                         function(err) {
                             console.log("error: " + err);

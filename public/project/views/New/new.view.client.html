@@ -20,12 +20,14 @@
       <div class="homepage-existing">
         <form ng-submit="model.search(model.query)">
           <input ng-model="model.name" placeholder="Name" type="text" class="form-control search-input" aria-label="...">
+          <br/>
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon3">brackets.challonge.com/</span>
             <input ng-model="model.url" type="text" class="form-control search-input this-specific-input" id="basic-url" aria-describedby="basic-addon3">
           </div>
+          <br/>
           <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button class="btn btn-default dropdown-toggle new-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               Single Elimination
               <span class="caret"></span>
             </button>
@@ -38,7 +40,8 @@
           </div>
         </form>
       </div>
-      <button ng-click="model.createTournament()" class="btn btn-default">
+      <br/>
+      <button ng-click="model.createTournament()" class="btn btn-default new-btn">
         create
       </button>
     </div>

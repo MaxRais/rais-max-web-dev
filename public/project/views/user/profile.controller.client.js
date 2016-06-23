@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, $routeParams, $rootScope, UserService) {
+    function ProfileController($location, $window, $routeParams, $rootScope, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
@@ -48,8 +48,7 @@
                 .then(function (response) {
                     vm.user = response.data;
                 });*/
-            console.log($rootScope);
-            vm.user = $rootScope.currentUser;
+            vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
         }
 
         function logout() {
@@ -58,10 +57,12 @@
                 .then(
                     function () {
                         $rootScope.currentUser = null;
+                        $window.localStorage.setItem("currentUser", null);
                         $location.url("/login");
                     },
                     function () {
                         $rootScope.currentUser = null;
+                        $window.localStorage.setItem("currentUser", null);
                         $location.url("/login");
                     }
                 );

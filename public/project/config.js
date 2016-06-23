@@ -64,7 +64,7 @@
                 controllerAs: "model"
             });
 
-        function checkLoggedin(UserService, $q, $location, $rootScope) {
+        function checkLoggedin(UserService, $q, $location, $rootScope, $window) {
 
             var deferred = $q.defer();
 
@@ -72,11 +72,11 @@
                 .checkLoggedin()
                 .then(
                     function(response) {
-                        var user = response.data;
+                        var user = JSON.parse($window.localStorage.getItem("currentUser"));
                         console.log(user);
-                        if(user == '0') {
+                        if(!user) {
                             deferred.reject();
-                            $rootScope.currentUser = null;
+                            $window.localStorage.setItem(null, angular.toJson(currentUser));
                             $location.url("/login")
                         } else {
                             $rootScope.currentUser = user;

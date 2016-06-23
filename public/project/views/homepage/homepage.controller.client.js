@@ -7,13 +7,13 @@
         .module("ChallongeClient")
         .controller("HomepageController", HomepageController);
 
-    function HomepageController($location, $rootScope) {
+    function HomepageController($location, $window, $rootScope) {
 
         var vm = this;
         vm.search = search;
         function init() {
             vm.query = "";
-            vm.user = $rootScope.currentUser;
+            vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
             if(!vm.user)
                 vm.user = {username: 'login'};
         }

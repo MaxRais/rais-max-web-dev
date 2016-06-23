@@ -7,13 +7,13 @@
         .module("ChallongeClient")
         .controller("NewController", NewController);
 
-    function NewController($location, $rootScope, $routeParams, ChallongeService) {
+    function NewController($location, $window, $rootScope, $routeParams, ChallongeService) {
 
         var vm = this;
         vm.setType = setType;
         vm.createTournament = createTournament;
         function init() {
-            vm.user = $rootScope.currentUser;
+            vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
             vm.name = "";
             vm.url = "";
             vm.type = "single elimination";
@@ -32,7 +32,15 @@
         }
 
         function createTournament() {
-            ChallongeService.createTournament(vm.name, vm.type, vm.url);
+            ChallongeService
+                .createTournament(vm.name, vm.type, vm.url)
+                .then(
+                    function(res) {
+                        console.log(res);
+                        console.log(res.data.pop());
+                        $location.url("/search/" + res.data.pop().tournament.name )
+                    }
+                );
         }
 
     }
