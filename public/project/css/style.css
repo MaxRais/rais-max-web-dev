@@ -215,11 +215,31 @@ button {
 }
 
 .homepage-nav-left {
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
 }
 
 .homepage-nav-right {
 
+}
+
+.crumbs-text {
+    color: rgba(255,255,255,.7);
+    padding: 15px;
+}
+
+.crumbs-text:hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.crumbs-arrow {
+    color: rgba(255,255,255,.7);
+    padding: 5px;
+    font-size: 15px;
 }
 
 body {
@@ -278,4 +298,10 @@ button:hover
     height: 100vh;
     overflow-y: scroll;
     padding: 0px 20%;
+}
+
+.tournament-iframe {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 100px;
 }
