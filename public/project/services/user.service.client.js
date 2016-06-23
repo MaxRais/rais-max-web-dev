@@ -18,7 +18,8 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             login: login,
-            logout: logout
+            logout: logout,
+            addBracket: addBracket
         };
         return api;
 
@@ -76,6 +77,11 @@
                 password: password
             };
             return $http.post(url, user);
+        }
+
+        function addBracket(uid, bid) {
+            var url = "/api/user/"+uid+"/brackets/"+bid;
+            return $http.put(url);
         }
     }
 })();

@@ -52,6 +52,7 @@
                 });*/
             vm.brackets = [];
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
+            
             ChallongeService
                 .getTournaments()
                 .then(function(res) {

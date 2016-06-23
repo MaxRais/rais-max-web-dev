@@ -19,7 +19,11 @@ module.exports = function() {
         },
         email: String,
         phone: String,
-        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
+        brackets: [Number],
+        participating: [{
+            bracketId: Number,
+            participantId: Number
+        }],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "assignmentUser"});
 
