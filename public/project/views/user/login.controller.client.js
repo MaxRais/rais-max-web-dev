@@ -17,7 +17,7 @@
             ChallongeService
                 //.getTournaments()
                 //.getOneTournament("test", true, true)
-                .createTournament("my first", "double elimination", "first")
+                .createTournament("myfirst", "double elimination", "first")
                 //.deleteTournament('test')
                 //.startTournament("test")
                 //.addParticipant('test', 'max', 1)

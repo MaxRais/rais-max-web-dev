@@ -40,11 +40,10 @@
             var json = {
                 name: name,
                 tournamentType: type,
-                url: customUrl ? customUrl : null,
-                subdomain: 'brackets'
+                url: customUrl ? customUrl : null
             };
 
-            /*json = {
+            json = {
                 api_key: 'u4oHiWqAGVWTnWRkrclDufRswZirQlj88qvKsosl',
                 tournament: {
                     name: name,
@@ -52,7 +51,7 @@
                     url: customUrl ? customUrl : null,
                     subdomain: 'brackets'
                 }
-            };*/
+            };
             var url = "/api/tournaments";
             //url = "api.challonge.com/v1/tournaments.json?"+JSON.stringify(json);
             return $http.post(url, json);
