@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("NewController", NewController);
 
-    function NewController($location, $window, $rootScope, $routeParams, ChallongeService) {
+    function NewController($location, $window, UserService, ChallongeService) {
 
         var vm = this;
         vm.setType = setType;
@@ -36,10 +36,14 @@
                 .createTournament(vm.name, vm.type, vm.url)
                 .then(
                     function(res) {
-                        console.log(res);
-                        console.log(res.data);
-                        $location.url("/search/" + res.data.tournament.url )
-
+                        return UserService.addBracket(vm.user._id, res.data.tournament.id);
+                    }
+                )
+                .then(
+                    function(res) {
+                        var user = res.data;
+                        console.log(user);
+                        $window.localStorage.setItem("currentUser", angular.toJson(user));
                     }
                 );
         }

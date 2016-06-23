@@ -6,6 +6,10 @@ module.exports = function (app) {
     var challonge = require('challonge');
     var https = require('https');
     var qs = require('querystring');
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.split(search).join(replacement);
+    };
 
     var client = challonge.createClient({
         apiKey: process.env.CHALLONGE_API_KEY,
@@ -54,12 +58,10 @@ module.exports = function (app) {
         var url = "api.challonge.com";
         var path = "/v1/tournaments.json?";
         path+="api_key="+process.env.CHALLONGE_API_KEY;
-        path+="&tournament[name]="+tournament.name.replace(' ', '+');
+        path+="&tournament[name]="+tournament.name.replaceAll(' ', '+');
         path+="&tournament[tournament_type]="+tournament.tournament_type.replace(' ', '+');
         path+="&tournament[url]="+tournament.url;
         path+="&tournament[subdomain]="+tournament.subdomain;
-
-        console.log(path);
 
         var options = {
             hostname: url,

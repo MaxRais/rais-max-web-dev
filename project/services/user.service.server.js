@@ -18,6 +18,7 @@ module.exports = function(app, models) {
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
+    app.put("/api/user/:userId/brackets/:bracketId", addBracket);
     app.delete("/api/user/:userId", deleteUser);
     app.get("/api/user", findUserByCredentials);
     app.post('/api/login', passport.authenticate('wam'), login);
@@ -116,7 +117,7 @@ module.exports = function(app, models) {
 
     function login(req, res, done) {
         var user = req.user;
-        console.log("USER: " + user);
+        //console.log("USER: " + user);
         res.json(user);
     }
 
@@ -125,13 +126,13 @@ module.exports = function(app, models) {
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    console.log("username: " + username);
-                    console.log("password: " + password);
-                    console.log("user.password: " + user);
+                    //console.log("username: " + username);
+                    //console.log("password: " + password);
+                    //console.log("user.password: " + user);
                     if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
-                        console.log('2');
+                        //console.log('2');
                         return done(null, false);
                     }
                 },
@@ -267,5 +268,18 @@ module.exports = function(app, models) {
             );
     }
 
+    function addBracket(req, res) {
+        var uid = req.params["userId"];
+        var bid = req.params["bracketId"];
 
+        userModel
+            .findUserById(uid)
+            .then(function(user) {
+                user.brackets.push(bid);
+                return userModel.updateUser(uid, user);
+            })
+            .then(function(user) {
+                res.json(user);
+            })
+    }
 };
