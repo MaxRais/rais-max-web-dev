@@ -305,3 +305,23 @@ button:hover
     height: 100vh;
     margin-top: 100px;
 }
+
+.input-group-addon {
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    padding-right: 0px;
+    color: #464646;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.this-specific-input {
+    padding-left: 0px;
+
+}
+
+.spaced-container {
+    margin-top: 100px;
+}
