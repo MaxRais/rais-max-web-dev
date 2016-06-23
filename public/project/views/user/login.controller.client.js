@@ -24,7 +24,7 @@
             //ChallongeService
                 //.getTournaments()
                 //.getOneTournament("test", true, true)
-                //.createTournament("myfirst", "double elimination", "first")
+                //.createTournament("a tournament", "double elimination", "spaces2")
                 //.deleteTournament('double')
                 //.startTournament("cs3200")
                 //.addParticipant('sample', 'rob', 1)

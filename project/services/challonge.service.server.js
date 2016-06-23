@@ -54,9 +54,12 @@ module.exports = function (app) {
         var url = "api.challonge.com";
         var path = "/v1/tournaments.json?";
         path+="api_key="+process.env.CHALLONGE_API_KEY;
-        path+="&tournament[name]="+tournament.name;
+        path+="&tournament[name]="+tournament.name.replace(' ', '+');
+        path+="&tournament[tournament_type]="+tournament.tournament_type.replace(' ', '+');
         path+="&tournament[url]="+tournament.url;
         path+="&tournament[subdomain]="+tournament.subdomain;
+
+        console.log(path);
 
         var options = {
             hostname: url,
