@@ -36,9 +36,7 @@
                 .createTournament(vm.name, vm.type, vm.url)
                 .then(
                     function(res) {
-                        console.log(res);
-                        console.log(res.data.pop());
-                        $location.url("/search/" + res.data.pop().tournament.name )
+                        $location.url("/search/" + res.data.tournament.url)
                     }
                 );
         }

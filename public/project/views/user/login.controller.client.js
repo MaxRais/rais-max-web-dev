@@ -20,21 +20,20 @@
         init();
 
         function login (username, password) {
-            console.log("starting");
-            //console.log("starting");
-           // ChallongeService
+
+            //ChallongeService
                 //.getTournaments()
                 //.getOneTournament("test", true, true)
                 //.createTournament("myfirst", "double elimination", "first")
-                //.deleteTournament('test')
-                //.startTournament("test")
-                //.addParticipant('test', 'max', 1)
-                //.deleteParticipant('test', '41862980')
-                //.getMatches('test')
-                //.getOneMatch('2654670', 'matchId')
-                //.updateMatch('2654670', 'match', '41859641', 2, 0)
-               // .then(function(response) {
-               //     console.log(response);
+                //.deleteTournament('double')
+                //.startTournament("cs3200")
+                //.addParticipant('sample', 'rob', 1)
+                //.deleteParticipant('sample', '41887154')
+                //.getMatches('cs3200', '41882829')
+                //.getOneMatch('cs3200', '64499104')
+                //.updateMatch('cs3200', '64499104', '41882835', 1, 3)
+                //.then(function(response) {
+                //    console.log(response);
                 //});
 
             var user = UserService
