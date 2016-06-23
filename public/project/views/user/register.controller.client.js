@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, $rootScope, UserService) {
+    function RegisterController($location, $rootScope, $window, UserService) {
 
         var vm = this;
         vm.register = register;
@@ -29,6 +29,7 @@
                     .then(
                         function(response) {
                             var newUser = response.data;
+                            $window.localStorage.setItem("currentUser", angular.toJson(newUser));
                             $rootScope.currentUser = newUser;
                             $location.url("/user/"+newUser._id);
                         },

@@ -37,8 +37,8 @@
                 .then(
                     function(res) {
                         console.log(res);
-                        console.log(res.data.pop());
-                        $location.url("/search/" + res.data.pop().tournament.name )
+                        console.log(res.data);
+                        $location.url("/search/" + res.data.tournament.url )
                     }
                 );
         }

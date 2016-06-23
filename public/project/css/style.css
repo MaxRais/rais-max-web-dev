@@ -323,5 +323,48 @@ button:hover
 }
 
 .spaced-container {
-    margin-top: 100px;
+    padding-top: 100px;
+    background-color: rgba(68,68,68,1);
+}
+
+h1 {
+    color: white;
+}
+
+.form-control {
+    padding: 12px 14px;
+    color: #464646;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 50px;
+    height: 45px;
+    border: none;
+}
+
+.homepage-nav {
+    background-color: rgba(68,68,68,1);
+}
+
+.btn-primary {
+    color: white;
+    background-color: rgba(255,255,255,.2);
+    border: none;
+}
+
+.btn-primary:hover {
+    color: rgba(68,68,68,1);
+    background-color: white;
+}
+
+.btn-primary:active {
+
+}
+
+label {
+    color: white;
+}
+
+.update-user-icon {
+    color: white;
 }
