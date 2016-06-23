@@ -7,6 +7,7 @@ module.exports = function (app) {
 
     var client = challonge.createClient({
         apiKey: process.env.CHALLONGE_API_KEY,
+        subdomain: 'brackets',
         format: 'json',
         version: 1
     });
@@ -25,7 +26,7 @@ module.exports = function (app) {
     function getTournaments(req, res) {
         client.tournaments.index({
             callback: function(err, data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -33,10 +34,15 @@ module.exports = function (app) {
 
     function getOneTournament(req, res) {
         var name = req.params["name"];
+        var participants = req.body.include_participants;
+        var matches = req.body.include_matches;
+        name.replace('%20', ' ');
         client.tournaments.show({
             id: name,
+            includeParticipants: participants,
+            includeMatches: matches,
             callback: function(err, data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -48,7 +54,7 @@ module.exports = function (app) {
         client.tournaments.create({
             tournament: newTournament,
             callback: function(err,data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -59,7 +65,7 @@ module.exports = function (app) {
         client.tournaments.destroy({
             id: name,
             callback: function(err, data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -70,7 +76,7 @@ module.exports = function (app) {
         client.tournaments.start({
             id: name,
             callback: function(err, data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -83,7 +89,7 @@ module.exports = function (app) {
             id: name,
             participant: participant,
             callback: function(err, data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -96,7 +102,7 @@ module.exports = function (app) {
             id: tourney,
             participantId: pid,
             callback: function(err,data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -107,7 +113,7 @@ module.exports = function (app) {
         client.matches.index({
             id: name,
             callback: function(err,data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -120,7 +126,7 @@ module.exports = function (app) {
             id: name,
             matchId: mid,
             callback: function(err,data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });
@@ -135,7 +141,7 @@ module.exports = function (app) {
             matchId: mid,
             match: match,
             callback: function(err,data){
-                if (err) { console.log(err); return; }
+                if (err) { res.send(err); return; }
                 res.json(data);
             }
         });

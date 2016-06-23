@@ -40,7 +40,7 @@
             var json = {
                 name: name,
                 tournament_type: type,
-                customUrl: customUrl ? null : customUrl
+                customUrl: customUrl ? customUrl : null
             };
             var url = "/api/tournaments";
             return $http.post(url, json);

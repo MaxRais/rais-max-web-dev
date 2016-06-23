@@ -10,18 +10,18 @@
                placeholder="username"
                type="text"
                required/>
-        <span ng-show="loginForm.$submitted && loginForm.username.$invalid">
+        <!--<span ng-show="loginForm.$submitted && loginForm.username.$invalid">
             Must have a username to login
-        </span>
+        </span>-->
         <input ng-model="password"
                name="password"
                class="form-control"
                placeholder="password"
                type="password"
                required/>
-        <span ng-show="loginForm.$submitted && loginForm.password.$invalid">
+        <!--<span ng-show="loginForm.$submitted && loginForm.password.$invalid">
             Must have a password to login
-        </span>
+        </span>-->
         <button type="submit"
                 ng-click="model.login(username, password)"
                 class="btn btn-primary btn-block form-control">Login</button>
