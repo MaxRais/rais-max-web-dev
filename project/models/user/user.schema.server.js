@@ -19,10 +19,10 @@ module.exports = function() {
         },
         email: String,
         phone: String,
-        brackets: [String],
+        brackets: [Number],
         participating: [{
-            bracketId: String,
-            participantId: String
+            bracketId: Number,
+            participantId: Number
         }],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "assignmentUser"});
