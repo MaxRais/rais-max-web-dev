@@ -5,23 +5,18 @@
 (function () {
     angular
         .module("ChallongeClient")
-        .controller("HomepageController", HomepageController);
+        .controller("SearchController", SearchController);
 
-    function HomepageController($location, $rootScope) {
+    function SearchController($location, $rootScope) {
 
         var vm = this;
-        vm.search = search;
         function init() {
-            vm.query = "";
             vm.user = $rootScope.currentUser;
             if(!vm.user)
                 vm.user = {username: 'login'};
+            
         }
         init();
-
-        function search(query) {
-            $location.url("/search/" + query)
-        }
 
     }
 })();

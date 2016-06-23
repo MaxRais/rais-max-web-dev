@@ -17,14 +17,14 @@
         Explore a world of beautiful, precise tournaments.
       </div>
       <div class="homepage-existing">
-        <div class="input-group search-input-group">
-          <input placeholder="Search for exisiting" type="text" class="form-control search-input" aria-label="...">
+        <form ng-submit="model.search(model.query)" class="input-group search-input-group">
+          <input ng-model="query" placeholder="Search for exisiting" type="text" class="form-control search-input" aria-label="...">
           <div class="input-group-btn">
-            <button class="btn btn-default search-btn">
+            <button type="submit" class="btn btn-default search-btn">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
           </div>
-        </div>
+        </form>
       </div>
       <div class="big-text">
       or
