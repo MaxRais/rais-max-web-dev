@@ -45,9 +45,9 @@
                 controller: "SearchController",
                 controllerAs: "model"
             })
-            .when("/search", {
-                templateUrl: "views/search/search.view.client.html",
-                controller: "SearchController",
+            .when("/new", {
+                templateUrl: "views/new/new.view.client.html",
+                controller: "NewController",
                 controllerAs: "model"
             })
             .when("/search/:query", {

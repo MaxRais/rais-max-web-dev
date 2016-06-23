@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="homepage-main">
+    <div class="homepage-nav">  
+      <div class="homepage-nav-left">
+        <a href="/project/index.html#/" class="crumbs-text">
+          Home
+        </a>
+        <span class=" crumbs-arrow">•</span>
+        <a class="crumbs-text">
+          New tournament
+        </a>
+      </div>
+      <div class="homepage-nav-right">
+          <a class="nav-link" href="#/login">
+              {{model.user.username}}
+          </a>
+      </div>
+    </div>
+    <div class="homepage-top">
+      <div class="homepage-existing">
+        <form ng-submit="model.search(model.query)">
+          <input ng-model="model.name" placeholder="Name" type="text" class="form-control search-input" aria-label="...">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon3">brackets.challonge.com/</span>
+            <input ng-model="model.url" type="text" class="form-control search-input this-specific-input" id="basic-url" aria-describedby="basic-addon3">
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Single Elimination
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a ng-click="model.setType('single elimination')" data-value="action">Single Elimination</a></li>
+              <li><a ng-click="model.setType('double elimination')" data-value="another action">Double Elimination</a></li>
+              <li><a ng-click="model.setType('round robin')" data-value="something else here">Round Robin</a></li>
+              <li><a ng-click="model.setType('swiss')" data-value="separated link">Swiss</a></li>
+            </ul>
+          </div>
+        </form>
+      </div>
+      <button class="btn btn-default">
+        create
+      </button>
+    </div>
+  </div>
+</div>
