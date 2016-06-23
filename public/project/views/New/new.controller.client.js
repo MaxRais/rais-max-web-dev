@@ -39,6 +39,7 @@
                         console.log(res);
                         console.log(res.data);
                         $location.url("/search/" + res.data.tournament.url )
+
                     }
                 );
         }

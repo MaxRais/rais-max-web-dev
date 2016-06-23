@@ -38,13 +38,6 @@
         
         function createTournament(name, type, customUrl) {
             var json = {
-                name: name,
-                tournamentType: type,
-                url: customUrl ? customUrl : null
-            };
-
-            json = {
-                api_key: 'u4oHiWqAGVWTnWRkrclDufRswZirQlj88qvKsosl',
                 tournament: {
                     name: name,
                     tournament_type: type,
@@ -53,7 +46,6 @@
                 }
             };
             var url = "/api/tournaments";
-            //url = "api.challonge.com/v1/tournaments.json?"+JSON.stringify(json);
             return $http.post(url, json);
         }
 
@@ -82,19 +74,14 @@
         }
 
         function getMatches(tournament, user) {
-            var json = {
-                participant_id: user ? user : null
-            };
-            var url = "/api/tournaments/"+tournament+"/matches";
-            return $http.get(url, json);
+            var pid = user ? user : "null";
+            var url = "/api/tournaments/"+tournament+"/"+pid+"/matches";
+            return $http.get(url);
         }
 
-        function getOneMatch(tournament, id, attachments) {
-            var json = {
-                include_attatchments: attachments ? attachments : null
-            };
+        function getOneMatch(tournament, id) {
             var url = "/api/tournaments/"+tournament+"/matches/"+id;
-            return $http.get(url, json);
+            return $http.get(url);
         }
 
         function updateMatch(tournament, match, winner, p1Score, p2Score) {

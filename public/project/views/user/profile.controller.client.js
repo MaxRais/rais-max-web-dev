@@ -51,6 +51,7 @@
                     vm.user = response.data;
                 });*/
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
+            console.log(user);
         }
 
         function logout() {
