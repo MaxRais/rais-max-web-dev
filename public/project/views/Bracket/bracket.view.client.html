@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="homepage-main">
+    <div class="homepage-nav">  
+      <div class="homepage-nav-left">
+        <a href="/project/index.html#/" class="crumbs-text">
+          Home
+        </a>
+        <span class=" crumbs-arrow">•</span>
+        <a class="crumbs-text">
+          Bracket
+        </a>
+      </div>
+      <div class="homepage-nav-right">
+          <a class="nav-link" href="#/login">
+              {{model.user.username}}
+          </a>
+      </div>
+    </div>
+    <div class="match-feed">
+      <div class="feed-left">
+        <div ng-repeat="match in vm.activeMatches">
+          {{match.id}}
+        </div>
+      </div>
+      <div ng-repeat="match in vm.pendingMatches" class="feed-right">
+        {{match.id}}
+      </div>
+    </div>
+  </div>
+</div>

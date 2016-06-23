@@ -62,6 +62,11 @@
                 templateUrl: "views/search/search.view.client.html",
                 controller: "SearchController",
                 controllerAs: "model"
+            })
+            .when("/brackets/:url", {
+                templateUrl: "views/bracket/bracket.view.client.html",
+                controller: "BracketController",
+                controllerAs: "model"
             });
 
         function checkLoggedin(UserService, $q, $location, $rootScope, $window) {
