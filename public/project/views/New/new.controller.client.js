@@ -42,7 +42,6 @@
                 .then(
                     function(res) {
                         var user = res.data;
-                        console.log(user);
                         $window.localStorage.setItem("currentUser", angular.toJson(user));
                     }
                 );

@@ -19,6 +19,7 @@ module.exports = function(app, models) {
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.put("/api/user/:userId/brackets/:bracketId", addBracket);
+    app.put("/api/user/:userId/participating", addParticipating);
     app.delete("/api/user/:userId", deleteUser);
     app.get("/api/user", findUserByCredentials);
     app.post('/api/login', passport.authenticate('wam'), login);
@@ -276,6 +277,21 @@ module.exports = function(app, models) {
             .findUserById(uid)
             .then(function(user) {
                 user.brackets.push(bid);
+                return userModel.updateUser(uid, user);
+            })
+            .then(function(user) {
+                res.json(user);
+            })
+    }
+
+    function addParticipating(req, res) {
+        var uid = req.params["userId"];
+        var participating = req.body;
+
+        userModel
+            .findUserById(uid)
+            .then(function(user) {
+                user.participating.push(participating);
                 return userModel.updateUser(uid, user);
             })
             .then(function(user) {
