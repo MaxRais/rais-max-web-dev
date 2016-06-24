@@ -28,9 +28,12 @@
         </form>
       </div>
       <div class="other-title-2">
-        Brackets users in this tournament
+        Brackets users in this tournament:
+        <div style="color: rgba(255, 255, 255, .5); font-size: 14px" ng-show="model.participants.length == 0">
+          None. Add participants with Brackets accounts to see them here!
+        </div>
         <div ng-repeat="participant in model.participants">
-          <a href="#/login">{{participant.username}}</a>
+          <a href="#/user/{{participant._id}}/participating">{{participant.username}}</a>
           <a ng-click="model.follow(participant)">
             <span class="glyphicon glyphicon-pushpin"></span>
           </a>

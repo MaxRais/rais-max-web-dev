@@ -48,6 +48,14 @@
                 //    loggedin: checkLoggedin
                 //}
             })
+            .when("/user/:uid/participating", {
+                templateUrl: "views/user/participating.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
+                //resolve: {
+                //    loggedin: checkLoggedin
+                //}
+            })
             .when("/user/:uid/following", {
                 templateUrl: "views/user/following.view.client.html",
                 controller: "FollowingController",
