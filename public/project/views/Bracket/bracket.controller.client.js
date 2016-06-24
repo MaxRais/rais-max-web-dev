@@ -10,6 +10,8 @@
     function BracketController($location, $window, $routeParams, UserService, ChallongeService) {
 
         var vm = this;
+        vm.submitMatch= submitMatch;
+        vm.showModal = showModal;
         function init() {
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
             vm.name = "";
@@ -19,8 +21,8 @@
             vm.activeMatches = [];
             vm.pendingMatches = [];
             vm.completedMatches = [];
+            vm.activeMatch = {player1: 'asd', player2: 'asdasd'};
             var redirect = $window.location.hash.includes("edit");
-
             ChallongeService
                 .getOneTournament($routeParams.url)
                 .then(
@@ -33,7 +35,6 @@
                             .then(
                                 function(res) {
                                     vm.matches = res.data;
-                                    console.log(vm.matches);
                                     for(var key in vm.matches) {
                                         var match = vm.matches[key].match;
 
@@ -59,6 +60,41 @@
         }
         init();
 
+        function showModal(match) {
+            vm.activeMatch = match;
+            $scope.p1Score = null;
+            $scope.p2Score = null;
+            $scope.winner = null;
+            $('#matchModal').modal('toggle');
+        }
+
+        function myscope($scope) {
+          $scope.button = 'red';
+        }
+
+        function submitMatch() {
+            var winner;
+            if($scope.winner == 1) 
+                winner = vm.activeMatch.player1_id
+            if($scope.winner == 2)
+                winner = vm.activeMatch.player2_id;
+            if(winner)
+                ChallongeService
+                    .updateMatch(vm.bracket.url, vm.activeMatch.id, winner, $scope.p1Score, $scope.p2Score)
+                    .then(
+                        function(res) {
+                            for(var key in vm.activeMatches) {
+                                var match = vm.activeMatches[key];
+                                if(match.id == res.data.match.id)
+                                    vm.activeMatches.splice(key,1);
+                            }
+                            $('#matchModal').modal('hide');
+                        },
+                        function(err) {
+                            console.log(err);
+                        }
+                    )
+        }
         function getNames(tournament, match) {
             ChallongeService
                 .getParticipant(tournament.url, match.player1_id)
