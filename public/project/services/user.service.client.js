@@ -19,7 +19,9 @@
             deleteUser: deleteUser,
             login: login,
             logout: logout,
-            addBracket: addBracket
+            addBracket: addBracket,
+            addParticipating: addParticipating,
+            followUser: followUser
         };
         return api;
 
@@ -81,6 +83,20 @@
 
         function addBracket(uid, bid) {
             var url = "/api/user/"+uid+"/brackets/"+bid;
+            return $http.put(url);
+        }
+
+        function addParticipating(uid, bid, pid) {
+            var url = "/api/user/"+uid+"/participating";
+            var part = {
+                bracketId: bid,
+                participantId: pid
+            };
+            return $http.put(url, part);
+        }
+
+        function followUser(yourId, theirId) {
+            var url = "/api/user/"+yourId+"/follow/"+theirId;
             return $http.put(url);
         }
     }

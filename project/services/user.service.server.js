@@ -20,6 +20,8 @@ module.exports = function(app, models) {
     app.put("/api/user/:userId", updateUser);
     app.put("/api/user/:userId/brackets/:bracketId", addBracket);
     app.put("/api/user/:userId/participating", addParticipating);
+    app.put("/api/user/:userId/participating", addParticipating);
+    app.put("/api/user/:uid/follow/:tid", followUser);
     app.delete("/api/user/:userId", deleteUser);
     app.get("/api/user", findUserByCredentials);
     app.post('/api/login', passport.authenticate('wam'), login);
@@ -292,6 +294,21 @@ module.exports = function(app, models) {
             .findUserById(uid)
             .then(function(user) {
                 user.participating.push(participating);
+                return userModel.updateUser(uid, user);
+            })
+            .then(function(user) {
+                res.json(user);
+            })
+    }
+
+    function followUser(req, res) {
+        var uid = req.params["uid"];
+        var tid = req.params["tid"];
+
+        userModel
+            .findUserById(uid)
+            .then(function(user) {
+                user.following.push(tid);
                 return userModel.updateUser(uid, user);
             })
             .then(function(user) {

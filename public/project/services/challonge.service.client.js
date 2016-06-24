@@ -15,6 +15,7 @@
             deleteTournament: deleteTournament,
             startTournament: startTournament,
             addParticipant: addParticipant,
+            getParticipant: getParticipant,
             deleteParticipant: deleteParticipant,
             getMatches: getMatches,
             getOneMatch: getOneMatch,
@@ -66,6 +67,11 @@
             };
             var url = "/api/tournaments/"+tournament+"/participants";
             return $http.post(url, json);
+        }
+
+        function getParticipant(tournament, pid) {
+            var url = "/api/tournaments/"+tournament+"/participants/"+pid;
+            return $http.get(url);
         }
 
         function deleteParticipant(tournament, id) {

@@ -15,7 +15,7 @@ module.exports = function() {
         findUserByCredentials: findUserByCredentials,
         findUserById: findUserById,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
     };
 
     return api;
