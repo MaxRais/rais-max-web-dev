@@ -16,14 +16,46 @@
           </a>
       </div>
     </div>
-    <div class="match-feed">
-      <div class="feed-left">
-        <div ng-repeat="match in vm.activeMatches">
-          {{match.id}}
-        </div>
+    <div class="homepage-top">
+      <div class="other-title">
+        Pending Matches
       </div>
-      <div ng-repeat="match in vm.pendingMatches" class="feed-right">
-        {{match.id}}
+      <div class="match-card-list" ng-repeat="match in model.pendingMatches">
+        <div class="tourney-card">
+          <div class="match-card-left">
+            <div class="match-title">
+              {{match.id}}
+            </div>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <div class="bracket-type">
+              vs
+            </div>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <div class="match-title">
+              {{match.id}}
+            </div>
+          </div>
+          <div class="match-card-right">
+            <div class="bracket-state">
+              <div class="state-icon" ng-switch="match.state">
+                <div ng-switch-when="open">
+                  <span class="glyphicon glyphicon-time"></span>
+                </div>
+                <div ng-switch-when="pending">
+                  <span class="glyphicon glyphicon-play-circle"></span>
+                </div>
+                <div ng-switch-when="complete">
+                  <span class="glyphicon glyphicon-ok-circle"></span>
+                </div>
+              </div>
+              {{match.state}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

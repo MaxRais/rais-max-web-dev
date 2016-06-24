@@ -70,3 +70,59 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+//matches
+
+.match-card-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.match-card {
+	min-width: 400px;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	background-color: rgba(255,255,255,.1);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+}	
+
+.match-card:hover {
+	background-color: rgba(255,255,255,.2);
+	cursor: pointer;
+	text-decoration: none;
+}		
+
+.match-card-left {
+	height: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+	align-items: center;
+}
+
+.match-card-right {
+	height: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.match-title {
+	color: white;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.match-state {
+	color: rgba(255,255,255,.7);
+	display: flex;
+	flex-direction: row;
+}

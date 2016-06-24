@@ -25,6 +25,7 @@
                             .then(
                                 function(res) {
                                     vm.matches = res.data;
+                                    console.log(vm.matches);
                                     for(var key in vm.matches) {
                                         var match = vm.matches[key].match;
                                         if(match.state == "pending")
@@ -34,6 +35,10 @@
                                         else if(match.state == "complete")
                                             vm.completedMatches.push(match);
                                     }
+
+                                    console.log(vm.activeMatches);
+                                    console.log(vm.pendingMatches);
+                                    console.log(vm.completedMatches);
                                     
                                 }
                             ); 
