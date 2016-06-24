@@ -17,7 +17,6 @@
         init();
 
         function updateUser() {
-            console.log(vm.user);
             $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
             UserService
                 .updateUser(vm.user._id, vm.user)

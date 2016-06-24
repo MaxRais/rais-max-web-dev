@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="homepage-main">
+        <div class="homepage-nav">
+            <div class="homepage-nav-left">
+                <a href="/project/index.html#/" class="crumbs-text">
+                    Home
+                </a>
+                <span class=" crumbs-arrow">•</span>
+                <a href="#/user/{{model.user._id}}" class="crumbs-text">
+                    profile
+                </a>
+                <span class=" crumbs-arrow">•</span>
+                <a class="crumbs-text">
+                    my brackets
+                </a>
+            </div>
+            <div class="homepage-nav-right">
+                <a class="nav-link" href="#/login">
+                    {{model.user.username}}
+                </a>
+            </div>
+        </div>
+        <div class="homepage-top">
+            <div class="other-title">
+                Followed Users
+            </div>
+            <div ng-repeat="following in model.following">
+                <div class="other-title-2">
+                    {{following.username}}
+                </div>
+            <div class="tourney-card-list" ng-repeat="bracket in following.pTournaments">
+                <a href="#/search/{{bracket.url}}/" class="tourney-card">
+                    <div class="card-left">
+                        <div class="bracket-title">
+                            {{bracket.name}}
+                        </div>
+                        <div class="bracket-type">
+                            {{bracket.tournamentType}}
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="player-count">
+                            <span class="glyphicon glyphicon-user"></span>
+                            {{bracket.participantsCount}}
+                        </div>
+                        <div class="bracket-state">
+                            <div class="state-icon" ng-switch="bracket.state">
+                                <div ng-switch-when="pending">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </div>
+                                <div ng-switch-when="underway">
+                                    <span class="glyphicon glyphicon-play-circle"></span>
+                                </div>
+                                <div ng-switch-when="in_progress">
+                                    <span class="glyphicon glyphicon-play-circle"></span>
+                                </div>
+                                <div ng-switch-when="awaiting-confirmation">
+                                    <span class="glyphicon glyphicon-play-circle"></span>
+                                </div>
+                                <div ng-switch-when="complete">
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                </div>
+                            </div>
+                            {{bracket.state}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

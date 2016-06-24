@@ -40,9 +40,9 @@
                 //    loggedin: checkLoggedin
                 //}
             })
-            .when("/user/:uid/brackets", {
-                templateUrl: "views/user/brackets.view.client.html",
-                controller: "ProfileController",
+            .when("/user/:uid/following", {
+                templateUrl: "views/user/following.view.client.html",
+                controller: "FollowingController",
                 controllerAs: "model"
                 //resolve: {
                 //    loggedin: checkLoggedin
