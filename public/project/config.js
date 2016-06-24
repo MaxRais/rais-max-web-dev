@@ -86,7 +86,7 @@
                         console.log(user);
                         if(!user) {
                             deferred.reject();
-                            $window.localStorage.setItem(null, angular.toJson(currentUser));
+                            $window.localStorage.setItem("currentUser", null);
                             $location.url("/login")
                         } else {
                             $rootScope.currentUser = user;
