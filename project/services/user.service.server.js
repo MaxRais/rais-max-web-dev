@@ -15,7 +15,7 @@ module.exports = function(app, models) {
     }));
 
     app.post("/api/user", createUser);
-    app.get("/api/user", getUsers);
+    app.get("/api/user/brackets/:bracketId", getUsers);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.put("/api/user/:userId/brackets/:bracketId", addBracket);
@@ -206,15 +206,34 @@ module.exports = function(app, models) {
     }
 
     function getUsers(req, res) {
-        var username = req.query["username"];
-        var password = req.query["password"];
-        if(username && password) {
-            findUserByCredentials(username, password, res);
-        } else if(username) {
-            findUserByUsername(username, res);
-        } else {
-            res.send(users);
-        }
+        var tournamentId = req.params["bracketId"];
+        userModel
+            .findUsersForTournament(tournamentId)
+            .then(
+                function(users) {
+                    var result = [];
+                    for(var i in users) {
+                        var user = users[i];
+                        if (user.participating.length > 0) {
+                            var bracketIds = user.participating.map(function (p) {
+                                return p.bracketId;
+                            });
+                            var contains = false;
+                            for(var b in bracketIds) {
+                                if (bracketIds[b] == tournamentId)
+                                    contains = true;
+                            }
+                            if (contains) {
+                                result.push(user);
+                            }
+                        }
+                    }
+                    res.send(result);
+                },
+                function(error){
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function findUserByUsername(username, res) {

@@ -7,10 +7,13 @@
         .module("ChallongeClient")
         .controller("SearchController", SearchController);
 
-    function SearchController($location, $window, $rootScope, $routeParams, ChallongeService) {
+    function SearchController($location, $window, $rootScope, $routeParams, UserService, ChallongeService) {
 
         var vm = this;
         vm.search = search;
+        vm.participants = [];
+        vm.follow = follow;
+
         function init() {
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
             vm.query = $routeParams.query || "";
@@ -34,11 +37,31 @@
                             else
                                 $('.tournament-iframe').challonge("", { theme: '1', multiplier: '1.0', match_width_multiplier: '1.0', show_final_results: '0', show_standings: '0'});
 
+                            findUsers();
                         },
                         function(err) {
                             console.log("error: " + err);
                         }
                     );
+        }
+
+        function findUsers() {
+            var tournament = vm.results;
+            UserService
+                .findParticipants(tournament.id)
+                .then(function(res) {
+                    vm.participants = res.data;
+                })
+        }
+
+        function follow(user) {
+            vm.user.following.push(user._id);
+            UserService
+                .updateUser(vm.user._id, vm.user)
+                .then(function(user) {
+                    console.log(vm.user);
+                    $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
+                });
         }
 
     }
