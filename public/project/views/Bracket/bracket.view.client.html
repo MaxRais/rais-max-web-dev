@@ -23,11 +23,11 @@
       <div class="other-title-2">
         Pending Matches
       </div>
-      <div class="match-card-list" ng-repeat="match in model.pendingMatches">
+      <div class="match-card-list" ng-repeat="match in model.activeMatches">
         <div class="tourney-card">
           <div class="match-card-left">
             <div class="match-title">
-              {{match.id}}
+              {{match.p1Name}}
             </div>
             &nbsp;
             &nbsp;
@@ -39,7 +39,7 @@
             &nbsp;
             &nbsp;
             <div class="match-title">
-              {{match.id}}
+              {{match.p2Name}}
             </div>
           </div>
           <div class="match-card-right">

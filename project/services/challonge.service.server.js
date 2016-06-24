@@ -179,7 +179,7 @@ module.exports = function (app) {
             method: 'GET'
         };
 
-        var requ = https.request(options, function(resp){
+        var requ = https.request(options, function(resp) {
             var resData = '';
             resp.on('data', function(chunk) {
                 resData += chunk;
