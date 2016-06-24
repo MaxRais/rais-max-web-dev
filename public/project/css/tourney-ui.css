@@ -209,3 +209,12 @@
 .modal-footer {
 	border: none;
 }
+
+.brackets-column {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	flex: 1;
+	margin-right: 40px;
+}

@@ -51,23 +51,36 @@
                     vm.user = response.data;
                 });*/
             vm.brackets = [];
+            vm.participating = [];
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
             
             ChallongeService
                 .getTournaments()
                 .then(function(res) {
                     var allBrackets = res.data;
+
+                    if(!vm.user.participating)
+                        vm.participating = [];
+                    else
+                        vm.participating = vm.user.participating.map(
+                            function(obj) {
+                                return obj.bracketId;
+                        });
+
                     if(!vm.user.brackets)
-                            vm.brackets = [];
+                        vm.brackets = [];
                     else
                         for(var key in allBrackets) {
                             var bracket = allBrackets[key].tournament;
                             if(vm.user.brackets.includes(bracket.id))
                                 vm.brackets.push(bracket)
+                            if(vm.participating.includes(bracket.id))
+                                vm.participating.push(bracket)
                         }
                 });
         }
 
+        
         function logout() {
             UserService
                 .logout()
