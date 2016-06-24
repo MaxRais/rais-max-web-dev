@@ -71,8 +71,9 @@
                     else
                         for(var key in allBrackets) {
                             var bracket = allBrackets[key].tournament;
-                            if(vm.user.brackets.includes(bracket.id))
-                                vm.brackets.push(bracket)
+                            if(vm.user.brackets.includes(bracket.id)) {
+                                vm.brackets.push(bracket);
+                            }
                             if(vm.participating.includes(bracket.id))
                                 vm.participating.push(bracket)
                         }

@@ -28,8 +28,8 @@
         <div class="other-title-2">
           Owned
         </div>
-        <div class="tourney-card-list" ng-repeat="bracket in model.brackets">
-          <a href="#/brackets/{{bracket.url}}/edit"class="tourney-card">
+        <div class="tourney-card-list">
+          <a ng-repeat="bracket in model.brackets" href="#/brackets/{{bracket.url}}/edit"class="tourney-card">
             <div class="card-left">
               <div class="bracket-title">
                 {{bracket.name}}
@@ -71,8 +71,8 @@
         <div class="other-title-2">
           Participating
         </div>
-        <div class="tourney-card-list" ng-repeat="bracket in model.participating">
-          <a href="#/search/{{bracket.url}}"class="tourney-card">
+        <div class="tourney-card-list" >
+          <a ng-repeat="bracket in model.participating" href="#/search/{{bracket.url}}"class="tourney-card">
             <div class="card-left">
               <div class="bracket-title">
                 {{bracket.name}}
