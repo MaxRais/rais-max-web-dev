@@ -134,3 +134,80 @@
 	display: flex;
 	flex-direction: row;
 }
+
+.modal-body-columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.modal-body-left {
+	width: 45%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-body-right {
+	width: 45%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+}
+
+.score-btn {
+	margin-bottom: 0px;
+}
+
+.winner-btns {
+	width: 100%;
+}
+
+.player-btn {
+	width: 50%;
+}
+
+.modal-header {
+	border: none;
+	padding: 10px;
+}
+
+.winner-btns {
+	padding: 0px 20px;
+}
+
+.modal-body-columns {
+	padding: 0px 20px;
+	margin-bottom: 20px;
+}
+
+.modal-content {
+	background-color: rgba(63,63,63,1);
+	color: white;
+	padding: 0px 20px;
+}
+
+.player-btn {
+	background-color: rgba(255,255,255,.4);
+	border: none;
+	color: white;
+}
+
+.score-btn {
+	background-color: rgba(255,255,255,.4);
+	border: none;
+	color: white;
+}
+
+.player-btn:hover {
+	background-color: white;
+}
+
+.score-btn:hover {
+	background-color: white;
+}
+
+.modal-footer {
+	border: none;
+}

@@ -24,7 +24,7 @@
         Pending Matches
       </div>
       <div class="match-card-list" ng-repeat="match in model.pendingMatches">
-        <div class="tourney-card">
+        <button ng-click="model.showModal(match)" class="tourney-card">
           <div class="match-card-left">
             <div class="match-title">
               {{match.id}}
@@ -58,7 +58,50 @@
               {{match.state}}
             </div>
           </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-header">
+        <h4 class="modal-title">Select Winner</h4>
+      </div>
+      <div class="btn-group winner-btns">
+        <button ng-click="winner = 1" ng-class="{ 'active' : winner == 1 }" class="btn btn-default player-btn"> {{model.activeMatch.player1_id}} </button>
+        <button ng-click="winner = 2" ng-class="{ 'active' : winner == 2 }" class="btn btn-default player-btn"> {{model.activeMatch.player2_id}} </button>
+      </div>
+      <div class="modal-header">
+        <h4 class="modal-title">Select Scores</h4>
+      </div>
+      <div class="modal-body-columns">
+
+        <div class="modal-body-left">
+          
+          <div class="btn-group-vertical">
+            <button ng-click="p1Score = 0" ng-class="{ 'active' : p1Score == 0 }" class="btn btn-default score-btn"> 0 </button>
+            <button ng-click="p1Score = 1" ng-class="{ 'active' : p1Score == 1 }" class="btn btn-default score-btn"> 1 </button>
+            <button ng-click="p1Score = 2" ng-class="{ 'active' : p1Score == 2 }" class="btn btn-default score-btn"> 2 </button>
+            <button ng-click="p1Score = 3" ng-class="{ 'active' : p1Score == 3 }" class="btn btn-default score-btn"> 3 </button>
+          </div>
         </div>
+        <div class="modal-body-right">
+          <div class="btn-group-vertical">
+            <button ng-click="p2Score = 0" ng-class="{ 'active' : p2Score == 0 }" class="btn btn-default score-btn"> 0 </button>
+            <button ng-click="p2Score = 1" ng-class="{ 'active' : p2Score == 1 }" class="btn btn-default score-btn"> 1 </button>
+            <button ng-click="p2Score = 2" ng-class="{ 'active' : p2Score == 2 }" class="btn btn-default score-btn"> 2 </button>
+            <button ng-click="p2Score = 3" ng-class="{ 'active' : p2Score == 3 }" class="btn btn-default score-btn"> 3 </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="model.submitMatch()" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
