@@ -24,6 +24,7 @@ module.exports = function() {
             bracketId: Number,
             participantId: Number
         }],
+        following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "assignmentUser"});
 

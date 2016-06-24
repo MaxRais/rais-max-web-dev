@@ -24,6 +24,7 @@ module.exports = function (app) {
     app.delete("/api/tournaments/:name", deleteTournament); //Delete tournament
     app.post("/api/tournaments/:name/start", startTournament); //Start tournament
     app.post("/api/tournaments/:name/participants", addParticipant); //Create participant
+    app.get("/api/tournaments/:name/participants/:pid", getParticipant); //Get participant
     app.delete("/api/tournaments/:name/participants/:pid", deleteParticipant); //Delete participant
     app.get("/api/tournaments/:name/:pid/matches/", getMatches); //Get all matches in a tournament
     app.get("/api/tournaments/:name/matches/:mid", getOneMatch); //Get one match record
@@ -148,6 +149,34 @@ module.exports = function (app) {
             hostname: url,
             path: path,
             method: 'POST'
+        };
+
+        var requ = https.request(options, function(resp){
+            var resData = '';
+            resp.on('data', function(chunk) {
+                resData += chunk;
+            });
+
+            resp.on('end', function() {
+                resData = JSON.parse(resData);
+                res.json(resData);
+            });
+        });
+        requ.end();
+    }
+
+    function getParticipant(req, res) {
+        var tourney = req.params["name"];
+        var pid = req.params["pid"];
+
+        var url = "api.challonge.com";
+        var path = "/v1/tournaments/brackets-"+tourney+"/participants/"+pid+".json?";
+        path+="api_key="+process.env.CHALLONGE_API_KEY;
+
+        var options = {
+            hostname: url,
+            path: path,
+            method: 'GET'
         };
 
         var requ = https.request(options, function(resp){
