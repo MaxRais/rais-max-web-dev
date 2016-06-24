@@ -61,6 +61,15 @@
           </div>
         </button>
       </div>
+
+      <div ng-show="model.bracket.state == 'awaiting_review'">
+        <div class="other-title-2">
+          No more pending matches
+        </div>
+        <a ng-click="model.end()"
+           class="btn btn-primary btn-block">
+          End Tournament</a>
+      </div>
     </div>
   </div>
 </div>

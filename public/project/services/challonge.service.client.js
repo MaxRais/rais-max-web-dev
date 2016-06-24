@@ -14,6 +14,7 @@
             createTournament: createTournament,
             deleteTournament: deleteTournament,
             startTournament: startTournament,
+            endTournament: endTournament,
             addParticipant: addParticipant,
             getParticipant: getParticipant,
             deleteParticipant: deleteParticipant,
@@ -57,6 +58,11 @@
 
         function startTournament(name) {
             var url = "/api/tournaments/"+name+"/start";
+            return $http.post(url);
+        }
+
+        function endTournament(name) {
+            var url = "/api/tournaments/"+name+"/finalize";
             return $http.post(url);
         }
 
