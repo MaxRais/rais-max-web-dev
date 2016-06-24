@@ -21,7 +21,8 @@
             logout: logout,
             addBracket: addBracket,
             addParticipating: addParticipating,
-            followUser: followUser
+            followUser: followUser,
+            findParticipants: findParticipants
         };
         return api;
 
@@ -98,6 +99,11 @@
         function followUser(yourId, theirId) {
             var url = "/api/user/"+yourId+"/follow/"+theirId;
             return $http.put(url);
+        }
+
+        function findParticipants(id) {
+            var url = "/api/user/brackets/"+id;
+            return $http.get(url);
         }
     }
 })();

@@ -16,6 +16,7 @@ module.exports = function() {
         findUserById: findUserById,
         updateUser: updateUser,
         deleteUser: deleteUser,
+        findUsersForTournament: findUsersForTournament
     };
 
     return api;
@@ -49,7 +50,8 @@ module.exports = function() {
                     lastName: newUser.lastName,
                     email: newUser.email,
                     brackets: newUser.brackets,
-                    participating: newUser.participating
+                    participating: newUser.participating,
+                    following: newUser.following
                 }
             },
             {new: true}
@@ -69,5 +71,9 @@ module.exports = function() {
                     resultUsers.push(user);
             }
         })
+    }
+    
+    function findUsersForTournament(id) {
+        return User.find();
     }
 };
