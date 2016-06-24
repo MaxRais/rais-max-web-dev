@@ -67,6 +67,11 @@
                 templateUrl: "views/bracket/bracket.view.client.html",
                 controller: "BracketController",
                 controllerAs: "model"
+            })
+            .when("/brackets/:url/edit", {
+                templateUrl: "views/bracket/bracket.edit.client.html",
+                controller: "BracketController",
+                controllerAs: "model"
             });
 
         function checkLoggedin(UserService, $q, $location, $rootScope, $window) {

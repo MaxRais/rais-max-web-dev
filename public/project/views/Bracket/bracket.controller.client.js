@@ -7,20 +7,27 @@
         .module("ChallongeClient")
         .controller("BracketController", BracketController);
 
-    function BracketController($location, $window, $rootScope, $routeParams, ChallongeService) {
+    function BracketController($location, $window, $routeParams, ChallongeService) {
 
         var vm = this;
         function init() {
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
+            vm.name = "";
+            vm.seed = "";
+            vm.add = add;
+            vm.start = start;
             vm.activeMatches = [];
             vm.pendingMatches = [];
             vm.completedMatches = [];
-            vm.done = false;
+            var redirect = $window.location.hash.includes("edit");
+
             ChallongeService
                 .getOneTournament($routeParams.url)
                 .then(
                     function(res) {
                         vm.bracket = res.data.tournament;
+                        if(vm.bracket.state == "underway" && redirect)
+                            $location.url("/brackets/"+vm.bracket.url);
                         ChallongeService
                             .getMatches(vm.bracket.url)
                             .then(
@@ -65,5 +72,23 @@
                 });
         }
 
+        function add(name, seed) {
+            ChallongeService
+                .addParticipant(vm.bracket.url, name, seed ? seed : "1")
+                .then(function(res) {
+                    vm.name="";
+                    vm.seed="1";
+                    vm.success = "Participant: " + name + " added successfully";
+                    $location.url("/brackets/"+vm.bracket.url+"/edit");
+                });
+        }
+
+        function start() {
+            ChallongeService
+                .startTournament(vm.bracket.url)
+                .then(function(res) {
+                    $location.url("/brackets/"+vm.bracket.url);
+                })
+        }
     }
 })();
