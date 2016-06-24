@@ -18,6 +18,7 @@
             vm.seed = "";
             vm.add = add;
             vm.start = start;
+            vm.delete = remove;
             vm.activeMatches = [];
             vm.pendingMatches = [];
             vm.completedMatches = [];
@@ -133,6 +134,14 @@
                 .startTournament(vm.bracket.url)
                 .then(function(res) {
                     $location.url("/brackets/"+vm.bracket.url);
+                })
+        }
+        
+        function remove() {
+            ChallongeService
+                .deleteTournament(vm.bracket.url)
+                .then(function(res) {
+                    $location.url('/user/'+vm.user._id+'/brackets');
                 })
         }
     }
