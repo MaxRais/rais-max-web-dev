@@ -59,4 +59,15 @@ module.exports = function() {
     function deleteUser(id) {
         return User.remove({_id: id});
     }
+
+    function getFollowing(userIds) {
+        var promise = User.find(function(err, users) {
+            var resultUsers = [];
+            for(var key in users) {
+                var user = users[key];
+                if(userIds.contains(user._id))
+                    resultUsers.push(user);
+            }
+        })
+    }
 };

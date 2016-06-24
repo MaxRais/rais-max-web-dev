@@ -27,6 +27,7 @@
                             ChallongeService
                                 .findOneTournament(bracketIds[b])
                                 .then(function(res) {
+                                    console.log(res);
                                     vm.following[index].pTournaments.push(res.data.tournament);
                                 });
                         }

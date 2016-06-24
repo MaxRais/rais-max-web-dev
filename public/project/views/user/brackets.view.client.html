@@ -20,7 +20,6 @@
           </a>
       </div>
     </div>
-<<<<<<< HEAD
     <div style="text-align: center" class="other-title">
       My Brackets
     </div>
@@ -34,26 +33,6 @@
             <div class="card-left">
               <div class="bracket-title">
                 {{bracket.name}}
-=======
-    <div class="homepage-top">
-      <div class="other-title">
-        My Brackets
-      </div>
-      <div class="tourney-card-list" ng-repeat="bracket in model.brackets">
-        <a href="#/brackets/{{bracket.url}}/edit" class="tourney-card">
-          <div class="card-left">
-            <div class="bracket-title">
-              {{bracket.name}}
-            </div>
-            <div class="bracket-type">
-              {{bracket.tournamentType}}
-            </div>
-          </div>
-          <div class="card-right">
-              <div class="player-count">
-                <span class="glyphicon glyphicon-user"></span>
-                {{bracket.participantsCount}}
->>>>>>> 82eabb79d4fc923d1f682386381a10c5d45d9d87
               </div>
               <div class="bracket-type">
                 {{bracket.tournamentType}}
@@ -73,6 +52,9 @@
                     <span class="glyphicon glyphicon-play-circle"></span>
                   </div>
                   <div ng-switch-when="in_progress">
+                    <span class="glyphicon glyphicon-play-circle"></span>
+                  </div>
+                  <div ng-switch-when="awaiting_confirmation">
                     <span class="glyphicon glyphicon-play-circle"></span>
                   </div>
                   <div ng-switch-when="complete">
@@ -115,12 +97,10 @@
                   <div ng-switch-when="in_progress">
                     <span class="glyphicon glyphicon-play-circle"></span>
                   </div>
-                  <div ng-switch-when="awaiting-confirmation">
-                    <span class="glyphicon glyphicon-play-circle"></span>
-                  </div>
                   <div ng-switch-when="complete">
                     <span class="glyphicon glyphicon-ok-circle"></span>
                   </div>
+                </div>
                 {{bracket.state}}
               </div>
             </div>
