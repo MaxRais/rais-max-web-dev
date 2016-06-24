@@ -48,7 +48,8 @@ module.exports = function() {
                     firstName: newUser.firstName,
                     lastName: newUser.lastName,
                     email: newUser.email,
-                    brackets: newUser.brackets
+                    brackets: newUser.brackets,
+                    participating: newUser.participating
                 }
             },
             {new: true}

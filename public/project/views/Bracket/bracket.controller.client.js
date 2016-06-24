@@ -7,7 +7,7 @@
         .module("ChallongeClient")
         .controller("BracketController", BracketController);
 
-    function BracketController($location, $window, $routeParams, ChallongeService) {
+    function BracketController($location, $window, $routeParams, UserService, ChallongeService) {
 
         var vm = this;
         function init() {
@@ -73,13 +73,22 @@
         }
 
         function add(name, seed) {
+            var pid;
             ChallongeService
                 .addParticipant(vm.bracket.url, name, seed ? seed : "1")
                 .then(function(res) {
                     vm.name="";
                     vm.seed="1";
                     vm.success = "Participant: " + name + " added successfully";
-                    $location.url("/brackets/"+vm.bracket.url+"/edit");
+                    pid = res.data.participant.id;
+                    return UserService.findUserByUsername(name)
+                })
+                .then(function(res) {
+                    if(res.data) {
+                        return UserService.addParticipating(res.data._id, vm.bracket.id, pid);
+                    }
+                })
+                .then(function(res) {
                 });
         }
 
