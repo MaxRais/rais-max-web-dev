@@ -14,6 +14,7 @@
         vm.createTournament = createTournament;
         function init() {
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
+            if(!vm.user) $location.url('/login');
             vm.name = "";
             vm.url = "";
             vm.type = "single elimination";
