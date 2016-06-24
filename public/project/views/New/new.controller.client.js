@@ -44,6 +44,7 @@
                     function(res) {
                         var user = res.data;
                         $window.localStorage.setItem("currentUser", angular.toJson(user));
+                        $location.url("/user/"+user._id+"/brackets");
                     }
                 );
         }
