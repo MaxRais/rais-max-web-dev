@@ -71,6 +71,14 @@
     margin-bottom: 30px;
 }
 
+.other-title-2 {
+    font-weight: 200;
+    font-size: 20px;
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 //matches
 
 .match-card-list {
