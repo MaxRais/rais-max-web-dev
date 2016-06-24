@@ -12,27 +12,43 @@
 
         function init() {
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
-            vm.following = [vm.user];
-
-            for(var index in vm.user.following) {
-                var id = vm.user.following[index];
-                UserService
-                    .findUserById(id)
-                    .then(function(user) {
-                        vm.following.push(user);
-                        var bracketIds = user.participating.map(function(p) {
-                            return p.bracketId;
-                        });
-                        for(var b in bracketIds) {
-                            ChallongeService
-                                .findOneTournament(bracketIds[b])
-                                .then(function(res) {
-                                    console.log(res);
-                                    vm.following[index].pTournaments.push(res.data.tournament);
-                                });
-                        }
-                    });
+            vm.following = vm.user.following;
+            for(var key in vm.following) {
+                vm.following[key].pTournaments = [];
             }
+
+            async.each(vm.following, 
+                function(following, callback) {
+                    console.log('ey');
+                     ChallongeService
+                        .getTournaments()
+                        .then(function(res) {
+                                var allTournies = res.data;
+                                for(var i in allTournies) {
+                                    var tourney = allTournies[i].tournament;
+                                    for(var j in vm.following) {
+                                        var follow = vm.following[j];
+                                        follow.participating.map(function(p) {
+                                            if(p.bracketId == tourney.id) {
+                                                console.log(vm.following[j], tourney);
+                                                vm.following[j].pTournaments.push(tourney);
+                                                console.log(vm.following[j]);
+                                            }
+                                        })
+                                    }
+                                }
+                                console.log(vm.following);
+                                callback();
+                            },
+                            function(err) {
+                                console.log("error: " + err);
+                                callback();
+                        });
+                }, 
+                function(err) {
+                    console.log(err);
+                }
+            );
         }
 
         init();

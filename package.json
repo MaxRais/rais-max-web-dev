@@ -4,6 +4,7 @@
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
   "dependencies": {
+    "async": "^2.0.0-rc.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.1",
     "challonge": "^1.0.1",

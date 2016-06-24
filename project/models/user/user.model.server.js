@@ -21,23 +21,23 @@ module.exports = function() {
     return api;
 
     function findFacebookUser(id) {
-        return User.findOne({'facebook.id': id});
+        return User.findOne({'facebook.id': id}).populate('following','participating username');
     }
 
     function createUser(user) {
-        return User.create(user);
+        return User.create(user).populate('following','participating username');
     }
 
     function findUserByUsername(username) {
-        return User.findOne({username: username});
+        return User.findOne({username: username}).populate('following','participating username');
     }
 
     function findUserByCredentials(username, password) {
-        return User.findOne({username: username, password: password});
+        return User.findOne({username: username, password: password}).populate('following','participating username');
     }
 
     function findUserById(id) {
-        return User.findById(id);
+        return User.findById(id).populate('following','participating username');
     }
 
     function updateUser(id, newUser) {
@@ -49,25 +49,16 @@ module.exports = function() {
                     lastName: newUser.lastName,
                     email: newUser.email,
                     brackets: newUser.brackets,
-                    participating: newUser.participating
+                    participating: newUser.participating,
+                    following: newUser.following
                 }
             },
             {new: true}
         )
+        .populate('following','participating username');
     }
 
     function deleteUser(id) {
         return User.remove({_id: id});
-    }
-
-    function getFollowing(userIds) {
-        var promise = User.find(function(err, users) {
-            var resultUsers = [];
-            for(var key in users) {
-                var user = users[key];
-                if(userIds.contains(user._id))
-                    resultUsers.push(user);
-            }
-        })
     }
 };
