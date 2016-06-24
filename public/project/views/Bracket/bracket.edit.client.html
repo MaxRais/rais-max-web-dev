@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="homepage-main">
+        <div class="homepage-nav">
+            <div class="homepage-nav-left">
+                <a href="/project/index.html#/" class="crumbs-text">
+                    Home
+                </a>
+                <span class=" crumbs-arrow">•</span>
+                <a class="crumbs-text">
+                    Bracket Edit
+                </a>
+            </div>
+            <div class="homepage-nav-right">
+                <a class="nav-link" href="#/login">
+                    {{model.user.username}}
+                </a>
+            </div>
+        </div>
+        <div class="homepage-top">
+            <div ng-show="model.success" class="alert alert-success">
+                {{model.success}}
+            </div>
+            <div class="other-title">
+                Edit {{model.bracket.name}}
+            </div>
+            <input ng-model="name"
+                   name="name"
+                   class="form-control"
+                   placeholder="Player Name"
+                   type="text"/>
+            <input ng-model="seed"
+                   name="seed"
+                   class="form-control"
+                   placeholder="Player Seed"
+                   type="text"/>
+            <a ng-click="model.add(name, seed)"
+               class="btn btn-primary btn-block">
+                Add Participant</a>
+            <a ng-click="model.start()"
+               class="btn btn-primary btn-block">
+                Start Tournament</a>
+        </div>
+    </div>
+</div>
