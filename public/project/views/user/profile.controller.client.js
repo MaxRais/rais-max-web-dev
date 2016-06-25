@@ -52,28 +52,41 @@
             vm.brackets = [];
             vm.participating = [];
             vm.user = JSON.parse($window.localStorage.getItem("currentUser"));
+
+            if(vm.user._id != id) {
+                UserService
+                    .findUserById(id)
+                    .then(
+                        function(res) {
+                            vm.otherUser = res.data;
+                        }
+                    )
+            }
             
             ChallongeService
                 .getTournaments()
                 .then(function(res) {
                     var allBrackets = res.data;
 
-                    if(!vm.user.participating)
+                    var currentUser = vm.otherUser ? vm.otherUser : vm.user
+
+                    if(!currentUser.participating)
                         vm.participating = [];
                     else
-                        vm.participating = vm.user.participating.map(
+                        vm.participating = currentUser.participating.map(
                             function(obj) {
                                 return obj.bracketId;
                         });
 
-                    if(!vm.user.brackets)
+                    if(!currentUser.brackets)
                         vm.brackets = [];
                     else
                         for(var key in allBrackets) {
                             var bracket = allBrackets[key].tournament;
-                            if(vm.user.brackets.includes(bracket.id)) {
+                            if(currentUser.brackets.includes(bracket.id)) {
                                 vm.brackets.push(bracket);
                             }
+
                             if(vm.participating.includes(bracket.id))
                                 vm.participating.push(bracket)
                         }

@@ -20,8 +20,11 @@
                 </a>
             </div>
         </div>
-        <div style="text-align: center" class="other-title">
+        <div ng-show="!model.otherUser" style="text-align: center" class="other-title">
             {{model.user.username}}'s entered brackets
+        </div>
+        <div ng-show="model.otherUser" style="text-align: center" class="other-title">
+            {{model.otherUser.username}}'s entered brackets
         </div>
         <div class="homepage-top-row" style="height: 100vh; overflow-y: scroll">
             <div class="brackets-column">
