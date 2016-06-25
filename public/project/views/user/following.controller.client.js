@@ -28,13 +28,15 @@
                                     var tourney = allTournies[i].tournament;
                                     for(var j in vm.following) {
                                         var follow = vm.following[j];
-                                        follow.participating.map(function(p) {
-                                            if(p.bracketId == tourney.id) {
-                                                console.log(vm.following[j], tourney);
-                                                vm.following[j].pTournaments.push(tourney);
-                                                console.log(vm.following[j]);
-                                            }
-                                        })
+                                        if(follow.participating) {
+                                            follow.participating.map(function (p) {
+                                                if (p.bracketId == tourney.id) {
+                                                    console.log(vm.following[j], tourney);
+                                                    vm.following[j].pTournaments.push(tourney);
+                                                    console.log(vm.following[j]);
+                                                }
+                                            })
+                                        }
                                     }
                                 }
                                 console.log(vm.following);

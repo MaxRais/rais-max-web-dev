@@ -55,13 +55,25 @@
         }
 
         function follow(user) {
-            vm.user.following.push(user._id);
-            UserService
-                .updateUser(vm.user._id, vm.user)
-                .then(function(user) {
-                    console.log(vm.user);
-                    $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
-                });
+            var index = vm.user.following.indexOf(user._id);
+            if(index > -1) {
+                vm.user.following.splice(index,1);
+                UserService
+                    .updateUser(vm.user._id, vm.user)
+                    .then(function (user) {
+                        console.log(vm.user);
+                        $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
+                    });
+            }
+            else {
+                vm.user.following.push(user._id);
+                UserService
+                    .updateUser(vm.user._id, vm.user)
+                    .then(function (user) {
+                        console.log(vm.user);
+                        $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
+                    });
+            }
         }
 
     }
