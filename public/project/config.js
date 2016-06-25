@@ -70,7 +70,7 @@
                 controllerAs: "model"
             })
             .when("/new", {
-                templateUrl: "views/new/new.view.client.html",
+                templateUrl: "views/New/new.view.client.html",
                 controller: "NewController",
                 controllerAs: "model"
             })
@@ -80,12 +80,12 @@
                 controllerAs: "model"
             })
             .when("/brackets/:url", {
-                templateUrl: "views/bracket/bracket.view.client.html",
+                templateUrl: "views/Bracket/bracket.view.client.html",
                 controller: "BracketController",
                 controllerAs: "model"
             })
             .when("/brackets/:url/edit", {
-                templateUrl: "views/bracket/bracket.edit.client.html",
+                templateUrl: "views/Bracket/bracket.edit.client.html",
                 controller: "BracketController",
                 controllerAs: "model"
             });
