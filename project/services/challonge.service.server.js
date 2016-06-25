@@ -169,7 +169,7 @@ module.exports = function (app) {
         var url = "api.challonge.com";
         var path = "/v1/tournaments/brackets-"+name+"/participants.json?";
         path+="api_key="+process.env.CHALLONGE_API_KEY;
-        path+="&participant[name]="+participant.name;
+        path+="&participant[name]="+participant.name.replaceAll(' ', '+');
         path+="&participant[seed]="+participant.seed;
 
         var options = {
