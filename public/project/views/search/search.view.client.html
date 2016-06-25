@@ -35,7 +35,10 @@
         <div ng-repeat="participant in model.participants">
           <a href="#/user/{{participant._id}}/participating">{{participant.username}}</a>
           <a ng-click="model.follow(participant)">
-            <span class="glyphicon glyphicon-pushpin"></span>
+            <span ng-show="model.user.following.indexOf(participant._id) == -1"
+                  class="glyphicon glyphicon-pushpin"></span>
+            <span ng-show="model.user.following.indexOf(participant._id) > -1"
+                  class="glyphicon glyphicon-ok"></span>
           </a>
         </div>
       </div>
