@@ -17,6 +17,9 @@
       </div>
     </div>
     <div class="homepage-top">
+      <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+      </div>
       <div class="homepage-existing">
         <form ng-submit="model.search(model.query)">
           <input ng-model="model.name" placeholder="Name" type="text" class="form-control search-input" aria-label="...">

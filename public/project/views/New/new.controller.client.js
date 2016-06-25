@@ -37,14 +37,22 @@
                 .createTournament(vm.name, vm.type, vm.url)
                 .then(
                     function(res) {
-                        return UserService.addBracket(vm.user._id, res.data.tournament.id);
+                        console.log(res);
+                        if(res.data.errors) {
+                            vm.error = res.data.errors[0];
+                        }
+                        else {
+                            return UserService.addBracket(vm.user._id, res.data.tournament.id);
+                        }
                     }
                 )
                 .then(
                     function(res) {
-                        var user = res.data;
-                        $window.localStorage.setItem("currentUser", angular.toJson(user));
-                        $location.url("/user/"+user._id+"/brackets");
+                        if(res) {
+                            var user = res.data;
+                            $window.localStorage.setItem("currentUser", angular.toJson(user));
+                            $location.url("/user/" + user._id + "/brackets");
+                        }
                     }
                 );
         }

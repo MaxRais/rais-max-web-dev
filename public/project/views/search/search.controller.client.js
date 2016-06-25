@@ -56,13 +56,15 @@
         }
 
         function follow(user) {
+            console.log('yo');
             var index = vm.user.following.indexOf(user._id);
             if(index > -1) {
                 vm.user.following.splice(index,1);
                 UserService
                     .updateUser(vm.user._id, vm.user)
                     .then(function (user) {
-                        $window.localStorage.setItem("currentUser", angular.toJson(user));
+                        console.log(user);
+                        $window.localStorage.setItem("currentUser", angular.toJson(user.config.data));
                     });
             }
             else {
@@ -70,7 +72,8 @@
                 UserService
                     .updateUser(vm.user._id, vm.user)
                     .then(function (user) {
-                        $window.localStorage.setItem("currentUser", angular.toJson(user));
+                        console.log(user);
+                        $window.localStorage.setItem("currentUser", angular.toJson(user.config.data));
                     });
             }
         }

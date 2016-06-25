@@ -35,8 +35,11 @@
         <div class="player-card" ng-repeat="participant in model.participants">
           <a class="player-name" href="#/user/{{participant._id}}/participating">{{participant.username}}</a>
           <button id="follow-btn" data-toggle="tooltip" data-placement="left" title="follow" class="icon-btn" ng-click="model.follow(participant)">
-            <span class="glyphicon glyphicon-pushpin"></span>
-          </button>
+            <span ng-show="model.user.following.indexOf(participant._id) == -1"
+                  class="glyphicon glyphicon-pushpin"></span>
+            <span ng-show="model.user.following.indexOf(participant._id) > -1"
+                  class="glyphicon glyphicon-ok"></span>
+          </button> 
         </div>
       </div>
       <div class="search-results-container"> 
