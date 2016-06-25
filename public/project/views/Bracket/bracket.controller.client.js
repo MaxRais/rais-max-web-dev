@@ -26,7 +26,7 @@
             vm.completedMatches = [];
             vm.activeMatch = {player1: 'asd', player2: 'asdasd'};
             var redirect = $window.location.hash.includes("edit");
-            
+
             ChallongeService
                 .getOneTournament($routeParams.url)
                 .then(
@@ -74,11 +74,22 @@
                             }
                             $('#matchModal').modal('hide');
                             getMatches();
+                            updateBracket();
                         },
                         function(err) {
                             console.log(err);
                         }
                     )
+        }
+
+        function updateBracket() {
+            ChallongeService
+                .getOneTournament($routeParams.url)
+                .then(
+                    function(res) {
+                        vm.bracket = res.data.tournament;
+                    }
+                );
         }
 
         function getMatches() {
@@ -123,6 +134,7 @@
         }
 
         function add(name, seed) {
+            console.log("ADD");
             var pid;
             ChallongeService
                 .addParticipant(vm.bracket.url, name, seed ? seed : "1")
