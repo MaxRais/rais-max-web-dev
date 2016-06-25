@@ -134,19 +134,26 @@
         }
 
         function add(name, seed) {
-            console.log("ADD");
             var pid;
             ChallongeService
                 .addParticipant(vm.bracket.url, name, seed ? seed : "1")
                 .then(function(res) {
                     vm.name="";
                     vm.seed="1";
-                    vm.success = "Participant: " + name + " added successfully";
+                    if(res.data.errors){
+                        vm.error = res.data.errors[0];
+                        vm.success = null;
+                        return;
+                    }
+                    else {
+                        vm.success = "Participant: " + name + " added successfully";
+                        vm.error = null;
+                    }
                     pid = res.data.participant.id;
                     return UserService.findUserByUsername(name)
                 })
                 .then(function(res) {
-                    if(res.data) {
+                    if(res) {
                         return UserService.addParticipating(res.data._id, vm.bracket.id, pid);
                     }
                 })
