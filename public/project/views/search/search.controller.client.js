@@ -20,6 +20,7 @@
             if(!vm.user)
                 vm.user = {username: 'login'};
             search(vm.query)
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
 
         }
         init();

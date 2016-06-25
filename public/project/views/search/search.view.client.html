@@ -27,16 +27,16 @@
           </div>
         </form>
       </div>
-      <div class="other-title-2">
+      <div class="other-title-2 search-page-users">
         Brackets users in this tournament:
         <div style="color: rgba(255, 255, 255, .5); font-size: 14px" ng-show="model.participants.length == 0">
           None. Add participants with Brackets accounts to see them here!
         </div>
-        <div ng-repeat="participant in model.participants">
-          <a href="#/user/{{participant._id}}/participating">{{participant.username}}</a>
-          <a ng-click="model.follow(participant)">
+        <div class="player-card" ng-repeat="participant in model.participants">
+          <a class="player-name" href="#/user/{{participant._id}}/participating">{{participant.username}}</a>
+          <button id="follow-btn" data-toggle="tooltip" data-placement="left" title="follow" class="icon-btn" ng-click="model.follow(participant)">
             <span class="glyphicon glyphicon-pushpin"></span>
-          </a>
+          </button>
         </div>
       </div>
       <div class="search-results-container"> 

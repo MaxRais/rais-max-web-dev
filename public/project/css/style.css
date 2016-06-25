@@ -377,3 +377,47 @@ label {
 .update-user-icon {
     color: white;
 }
+
+.player-name {
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid rgba(0,0,0,0);
+    transition: .2s all ease-in-out;
+}
+
+.player-name:hover {
+    text-decoration: none;
+    color: white;
+    border-color: white;
+}
+
+.player-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(255,255,255,.2);
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.icon-btn {
+    color: white;
+    transition: .2s all ease-in-out;
+    border-radius: 50px;
+}   
+
+.icon-btn:hover {
+    color: rgba(63,63,63,1);
+    background-color: white;
+
+}
+
+.search-page-users {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+}
