@@ -60,7 +60,7 @@ module.exports = function() {
     }
 
     function deleteUser(id) {
-        return User.remove({_id: id});
+        return User.remove({_id: id}).populate('following','participating username');
     }
 
     function getFollowing(userIds) {
@@ -71,10 +71,10 @@ module.exports = function() {
                 if(userIds.contains(user._id))
                     resultUsers.push(user);
             }
-        })
+        }).populate('following','participating username');
     }
     
     function findUsersForTournament(id) {
-        return User.find();
+        return User.find().populate('following','participating username');
     }
 };

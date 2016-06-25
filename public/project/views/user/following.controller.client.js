@@ -17,9 +17,10 @@
                 vm.following[key].pTournaments = [];
             }
 
+            console.log(vm.user);
+
             async.each(vm.following, 
                 function(following, callback) {
-                    console.log('ey');
                      ChallongeService
                         .getTournaments()
                         .then(function(res) {

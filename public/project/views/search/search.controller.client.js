@@ -61,8 +61,7 @@
                 UserService
                     .updateUser(vm.user._id, vm.user)
                     .then(function (user) {
-                        console.log(vm.user);
-                        $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
+                        $window.localStorage.setItem("currentUser", angular.toJson(user));
                     });
             }
             else {
@@ -70,8 +69,7 @@
                 UserService
                     .updateUser(vm.user._id, vm.user)
                     .then(function (user) {
-                        console.log(vm.user);
-                        $window.localStorage.setItem("currentUser", angular.toJson(vm.user));
+                        $window.localStorage.setItem("currentUser", angular.toJson(user));
                     });
             }
         }
