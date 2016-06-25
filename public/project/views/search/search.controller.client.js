@@ -19,7 +19,7 @@
             vm.query = $routeParams.query || "";
             if(!vm.user)
                 vm.user = {username: 'login'};
-            search(vm.query)
+            search(vm.query);
             $("body").tooltip({ selector: '[data-toggle=tooltip]' });
 
         }
@@ -56,7 +56,6 @@
         }
 
         function follow(user) {
-            console.log('yo');
             var index = vm.user.following.indexOf(user._id);
             if(index > -1) {
                 vm.user.following.splice(index,1);

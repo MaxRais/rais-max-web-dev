@@ -158,6 +158,8 @@
                     }
                 })
                 .then(function(res) {
+                    if(res.data.username == vm.user.username)
+                        $window.localStorage.setItem("currentUser", angular.toJson(res.data));
                 });
         }
 
