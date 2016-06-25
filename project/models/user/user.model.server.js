@@ -26,11 +26,11 @@ module.exports = function() {
     }
 
     function createUser(user) {
-        return User.create(user).populate('following','participating username');
+        return User.create(user);
     }
 
     function findUserByUsername(username) {
-        return User.findOne({username: username}).populate('following','participating username');
+        return User.findOne({username: username});
     }
 
     function findUserByCredentials(username, password) {
