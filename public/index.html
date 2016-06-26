@@ -1,28 +1,124 @@
+<!-- Taken from Bootstrap's free website templates: http://startbootstrap.com/template-overviews/landing-page/-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Max Rais - CS4550 Home Page</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
-    <h1>Max Rais CS4550 Home Page</h1>
 
-    <img src="images/picture.png"/>
+<!-- Header -->
+<div class="intro-header">
+    <div class="container">
 
-    <h2>Links to all my cool projects</h2>
-    <ul>
-        <li>
-            <a href="project/#/">Project</a>
-        </li>
-        <li>
-            <a href="assignment/#/login">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a target="_BLANK" href="https://github.com/MaxRais/rais-max-web-dev">My GitHub</a>
-        </li>
-    </ul>
+        <div class="row">
+            <div class="col-lg-12">
+                <img style="display: block; margin: 0 auto 20px; margin-bottom: -200px;" class="img-responsive" src="images/picture2.png">
+                <div class="intro-message">
+                    <h1>Max Rais</h1>
+                    <h3>CS 4550 Home Page</h3>
+                    <hr class="intro-divider">
+                    <ul class="list-inline intro-social-buttons">
+                        <li>
+                            <a href="assignment/#/login" class="btn btn-default btn-lg"><i class="fa"></i> <span class="network-name">Web App Maker</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/MaxRais/rais-max-web-dev" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="project/#/" class="btn btn-default btn-lg"><i class="fa"></i> <span class="network-name">Brackets</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.intro-header -->
+
+<!-- Page Content -->
+
+<div class="content-section-a">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Web App Maker:<br>Class assignment</h2>
+                <p class="lead"><a href="assignment/#/login">Web App Maker</a> is the assignment we have been working on in class for the entire semester. Check out what we've been working on in our six weeks of class!</p>
+            </div>
+            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                <img class="img-responsive" src="images/wam.png" alt="">
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.content-section-a -->
+
+<div class="content-section-b">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Brackets:<br>Class Project</h2>
+                <p class="lead">Brackets is the project <a target="_BLANK" href="http://webdev-kevinaltschuler.rhcloud.com/">Kevin Altschuler</a> and I have been working on this semester. Using Brackets, you can create brackets quickly and run them efficiently, while also keeping track of the users that enter your tournaments. Try it <a href="project/#/">here.</a>
+            </div>
+            <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                <img class="img-responsive" src="images/brackets2.png" alt="">
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.content-section-b -->
+
+</div>
+<!-- /.content-section-a -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
