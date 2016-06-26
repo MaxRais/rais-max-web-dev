@@ -29,14 +29,20 @@
                     .then(
                         function(response) {
                             var newUser = response.data;
-                            $window.localStorage.setItem("currentUser", angular.toJson(newUser));
-                            $rootScope.currentUser = newUser;
-                            $location.url("/user/"+newUser._id);
+                            return UserService.findUserByUsername(newUser.username);
                         },
                         function(error) {
                             vm.error = error.data;
                         }
-                    );
+                    )
+                    .then(
+                        function(res) {
+                            var newUser = res.data;
+                            $window.localStorage.setItem("currentUser", angular.toJson(newUser));
+                            $rootScope.currentUser = newUser;
+                            $location.url("/user/"+newUser._id);
+                        }
+                    )
             }
         }
     }

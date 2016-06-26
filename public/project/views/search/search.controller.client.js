@@ -62,18 +62,24 @@
                 UserService
                     .updateUser(vm.user._id, vm.user)
                     .then(function (user) {
-                        console.log(user);
-                        $window.localStorage.setItem("currentUser", angular.toJson(user.config.data));
-                    });
+                        return UserService.findUserById(user.data._id);
+                    })
+                    .then(function(res) {
+                        console.log(res);
+                        $window.localStorage.setItem("currentUser", angular.toJson(res.data));
+                    })
             }
             else {
                 vm.user.following.push(user._id);
                 UserService
                     .updateUser(vm.user._id, vm.user)
                     .then(function (user) {
-                        console.log(user);
-                        $window.localStorage.setItem("currentUser", angular.toJson(user.config.data));
-                    });
+                        return UserService.findUserById(user.data._id);
+                    })
+                    .then(function(res) {
+                        console.log(res);
+                        $window.localStorage.setItem("currentUser", angular.toJson(res.data));
+                    })
             }
         }
 

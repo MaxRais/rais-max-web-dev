@@ -30,7 +30,7 @@ module.exports = function() {
     }
 
     function findUserByUsername(username) {
-        return User.findOne({username: username});
+        return User.findOne({username: username}).populate('following','participating username');
     }
 
     function findUserByCredentials(username, password) {
@@ -42,21 +42,19 @@ module.exports = function() {
     }
 
     function updateUser(id, newUser) {
-        return User.findOneAndUpdate(
-            {_id: id},
-            {
-                $set: {
-                    firstName: newUser.firstName,
-                    lastName: newUser.lastName,
-                    email: newUser.email,
-                    brackets: newUser.brackets,
-                    participating: newUser.participating,
-                    following: newUser.following
-                }
-            },
-            {new: true}
-        )
-        .populate('following','participating username');
+
+        return User.findOne({_id: id},
+            function(err, user) {
+                user.firstName = newUser.firstName;
+                user.lastName = newUser.lastName;
+                user.email = newUser.email;
+                user.brackets = newUser.brackets;
+                user.participating = newUser.participating;
+                user.following = newUser.following;
+                user.save();
+            })
+            .populate('following','participating username');
+
     }
 
     function deleteUser(id) {
